@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حفظ الأربعين النووية وتتمة ابن رجب (٥٠ حديثاً)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #F5ECD7;
+    --parchment-dark: #EAD9BC;
+    --parchment-deep: #D4B896;
+    --parchment-light: #FFFDF9;
+    --ink: #2C1A0E;
+    --ink-light: #5C3D1E;
+    --emerald: #1B5E42;
+    --emerald-light: #2E8B63;
+    --emerald-pale: #E8F5EE;
+    --gold: #B8860B;
+    --gold-light: #DAA520;
+    --gold-pale: #FFF8E1;
+    --border: #C9A96E;
+    --shadow: rgba(44, 26, 14, 0.12);
+
+    /* Hadith Syntax Coloring */
+    --book-red: #c00000;    /* Variant wordings, additions, commentary */
+    --book-navy: #002060;   /* Isnad, Sahabi, Quranic Ayahs */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Amiri', 'Traditional Arabic', 'Scheherazade New', serif;
+    background-color: var(--parchment);
+    color: var(--ink);
+    min-height: 100vh;
+    direction: rtl;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(184,134,11,0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(27,94,66,0.05) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A96E' fill-opacity='0.12'%3E%3Cpath d='M30 0l3.5 6.06L30 5.25l-3.5.81L30 0zm0 60l3.5-6.06L30 54.75l-3.5-.81L30 60zM0 30l6.06-3.5L5.25 30l.81 3.5L0 30zm60 0l-6.06 3.5L54.75 30l-.81-3.5L60 30zM15 15l2.47 4.28L15 18.5l-2.47.78L15 15zm30 0l2.47 4.28L45 18.5l-2.47.78L45 15zm-30 30l2.47-4.28L15 41.5l-2.47-.78L15 45zm30 0l2.47-4.28L45 41.5l-2.47-.78L45 45z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, var(--emerald) 0%, #0D3D28 100%);
+    padding: 2.2rem 1.5rem 1.8rem;
+    text-align: center;
+    border-bottom: 3px solid var(--gold);
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23DAA520' fill-opacity='0.08'%3E%3Cpath d='M40 0 L46 14 L60 14 L49 22 L53 36 L40 28 L27 36 L31 22 L20 14 L34 14 Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+
+  .header-ornament {
+    color: var(--gold-light);
+    font-size: 1.1rem;
+    letter-spacing: 0.5rem;
+    opacity: 0.9;
+    margin-bottom: 0.3rem;
+  }
+
+  .header h1 {
+    color: #FFF8E1;
+    font-size: 2.3rem;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  }
+
+  .header-subtitle {
+    color: #E8F5EE;
+    font-size: 1.05rem;
+    margin-top: 0.4rem;
+    opacity: 0.9;
+  }
+
+  .main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.2rem;
+  }
+
+  /* ── Screens ── */
+  .screen { display: none; }
+  .screen.active { display: block; animation: fadeIn 0.25s ease-out; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .bismillah {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.6rem;
+    margin-bottom: 1.8rem;
+    font-weight: 700;
+  }
+
+  /* ── Navigation Bars ── */
+  .nav-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--emerald);
+    color: #FFF8E1;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.3rem;
+    font-family: 'Amiri', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  .nav-btn:hover:not(:disabled) {
+    background: var(--emerald-light);
+    transform: translateY(-1px);
+  }
+
+  .title-bar {
+    background: linear-gradient(135deg, var(--emerald-pale), #ffffff);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+
+  .title-bar-label {
+    font-size: 0.95rem;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .title-bar-name {
+    font-size: 1.55rem;
+    color: var(--emerald);
+    font-weight: 700;
+    line-height: 1.6;
+  }
+
+  /* ── 50 Hadith Grid ── */
+  .hadith-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1.4rem;
+  }
+
+  .hadith-card {
+    background: var(--parchment-light);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem 1.2rem;
+    position: relative;
+    box-shadow: 0 3px 12px var(--shadow);
+    transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .hadith-card::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 1px solid var(--parchment-deep);
+    border-radius: 10px;
+    pointer-events: none;
+    opacity: 0.45;
+  }
+
+  .hadith-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px var(--shadow);
+    border-color: var(--gold-light);
+  }
+
+  .hadith-card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--emerald);
+    text-align: center;
+    line-height: 1.5;
+    margin: 0.4rem 0 0.8rem;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(to left, transparent, var(--border), transparent);
+    margin: 0.6rem 0 1rem;
+  }
+
+  .card-action-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hint-btn, .test-inline-btn, .cloze-btn, .read-btn {
+    border-radius: 20px;
+    font-family: 'Amiri', serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    padding: 0.35rem 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .hint-btn {
+    background: var(--gold-pale);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+  }
+  .hint-btn:hover { background: var(--gold); color: #fff; }
+
+  .test-inline-btn {
+    background: var(--emerald-pale);
+    border: 1px solid var(--emerald);
+    color: var(--emerald);
+  }
+  .test-inline-btn:hover { background: var(--emerald); color: #fff; }
+
+  .cloze-btn {
+    background: #eef2ff;
+    border: 1px solid #4f46e5;
+    color: #4f46e5;
+  }
+  .cloze-btn:hover { background: #4f46e5; color: #fff; }
+
+  .read-btn {
+    background: #fdf2f8;
+    border: 1px solid #be185d;
+    color: #be185d;
+  }
+  .read-btn:hover { background: #be185d; color: #fff; }
+
+  .hint-text-display {
+    display: none;
+    font-size: 1rem;
+    color: var(--ink-light);
+    line-height: 1.8;
+    background: var(--gold-pale);
+    border: 1.5px dashed var(--gold);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    margin-top: 1rem;
+    text-align: justify;
+    cursor: default;
+    position: relative;
+    z-index: 2;
+  }
+  .hint-text-display.shown { display: block; animation: fadeIn 0.25s ease-out; }
+
+  /* ── Hadith Text Styles ── */
+  .hadith-text-rendered {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: 1.35rem;
+    line-height: 2.3;
+    color: #1a1a1a;
+    text-align: justify;
+    direction: rtl;
+    word-spacing: 1.5px;
+  }
+
+  .text-navy, .auto-sanad, .quran-ayah {
+    color: var(--book-navy) !important;
+    font-weight: 700;
+  }
+
+  .text-red {
+    color: var(--book-red) !important;
+  }
+
+  /* ── Reading Modal ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(44, 26, 14, 0.65);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal-box {
+    background: var(--parchment-light);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(44,26,14,0.4);
+    animation: modalIn 0.28s ease-out;
+  }
+
+  @keyframes modalIn {
+    from { transform: scale(0.93) translateY(18px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  .modal-header {
+    background: linear-gradient(135deg, var(--emerald) 0%, #0D3D28 100%);
+    padding: 1.2rem 1.6rem;
+    border-radius: 14px 14px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .modal-title-wrap h2 {
+    font-size: 1.5rem;
+    color: #FFF8E1;
+  }
+
+  .modal-title-wrap p {
+    font-size: 0.95rem;
+    color: rgba(255,248,225,0.85);
+  }
+
+  .modal-close {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #FFF8E1;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.3); }
+
+  .modal-body { padding: 1.8rem; }
+
+  .modal-takhrij {
+    margin-top: 1.6rem;
+    padding-top: 1.2rem;
+    border-top: 1.5px dashed var(--border);
+    font-size: 1.05rem;
+    color: var(--ink-light);
+    line-height: 1.9;
+  }
+
+  .modal-takhrij strong {
+    color: var(--emerald);
+  }
+
+  /* ── STICKY CONTROL BAR FOR PROGRESSIVE BLUR ── */
+  .cloze-sticky-bar {
+    position: sticky;
+    top: 0.8rem;
+    z-index: 100;
+    background: rgba(245, 236, 215, 0.94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 6px 18px rgba(44, 26, 14, 0.14);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cloze-sticky-bar .nav-btn {
+    padding: 0.45rem 1rem;
+    font-size: 0.96rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .cloze-container {
+    background: var(--parchment-light);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 2.2rem;
+    line-height: 2.6;
+    font-size: 1.45rem;
+    box-shadow: 0 4px 15px var(--shadow);
+    text-align: justify;
+  }
+
+  .cloze-word {
+    display: inline-block;
+    padding: 0 3px;
+    margin: 2px 1px;
+    border-radius: 4px;
+    transition: filter 0.2s ease, background 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .cloze-word.blurred {
+    filter: blur(8px);
+    background: rgba(201, 169, 110, 0.25);
+    color: transparent !important;
+  }
+
+  .cloze-word.blurred:hover {
+    filter: blur(5px);
+    background: rgba(201, 169, 110, 0.4);
+  }
+
+  .cloze-takhrij-sep {
+    height: 1.5px;
+    background: linear-gradient(to left, transparent, var(--border), transparent);
+    margin: 1.8rem 0 1.2rem;
+  }
+
+  /* ── Written Recitation Exam ── */
+  .test-writing-area {
+    width: 100%;
+    min-height: 170px;
+    margin-top: 1.2rem;
+    padding: 1.2rem;
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: 1.35rem;
+    line-height: 2.1;
+    background: #ffffff;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    resize: vertical;
+    direction: rtl;
+    color: var(--ink);
+  }
+
+  .test-writing-area:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.25);
+  }
+
+  .diff-added {
+    color: #6f2da8;
+    text-decoration: line-through;
+    opacity: 0.85;
+    background: rgba(111, 45, 168, 0.08);
+    padding: 0 4px;
+    border-radius: 3px;
+    margin: 0 2px;
+  }
+
+  .diff-removed {
+    cursor: pointer;
+    color: #e53e3e;
+    display: inline-flex;
+    align-items: center;
+    margin: 0 2px;
+    background: #fff0f0;
+    border: 1px dashed #e53e3e;
+    border-radius: 4px;
+    padding: 0 4px;
+    font-size: 0.95em;
+    user-select: none;
+  }
+
+  .diff-removed-text { display: none; margin-right: 4px; font-weight: bold; }
+  .diff-removed.expanded .diff-removed-text { display: inline; }
+  .diff-removed.expanded .diff-removed-icon { display: none; }
+
+  .correction-result {
+    margin-top: 1.5rem;
+    padding: 1.6rem;
+    background: #FFFDF7;
+    border: 1.5px dashed var(--gold);
+    border-radius: 10px;
+    font-size: 1.35rem;
+    line-height: 2.4;
+    text-align: justify;
+  }
+
+  .correction-takhrij-box {
+    margin-top: 1.6rem;
+    padding-top: 1rem;
+    border-top: 1.5px dashed var(--border);
+    font-size: 1.1rem;
+    color: var(--ink-light);
+    line-height: 1.9;
+  }
+
+  .correction-takhrij-box strong {
+    color: var(--emerald);
+  }
+
+  @media (max-width: 650px) {
+    .header h1 { font-size: 1.7rem; }
+    .hadith-grid { grid-template-columns: 1fr; }
+    .cloze-container { font-size: 1.25rem; padding: 1.2rem; }
+    .test-writing-area { font-size: 1.2rem; }
+    .cloze-sticky-bar { padding: 0.5rem; gap: 0.35rem; }
+    .cloze-sticky-bar .nav-btn { font-size: 0.88rem; padding: 0.4rem 0.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-ornament">— ✦ —</div>
+  <h1>حِفْظُ الأَرْبَعِينَ النَّوَوِيَّةِ وَتَتِمَّةِ ابْنِ رَجَبٍ</h1>
+  <div class="header-subtitle">الْمَنْظُومَةُ الْكَامِلَةُ لِضَبْطِ وَتَسْمِيعِ خَمْسِينَ حَدِيثاً نَبَوِيّاً</div>
+</header>
+
+<div class="main-container">
+
+  <!-- SCREEN 1: All 50 Cards Directly -->
+  <div id="screen-main" class="screen active">
+    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="hadith-grid" id="main-grid"></div>
+  </div>
+
+  <!-- SCREEN 2: Progressive Blur / Cloze Mode -->
+  <div id="screen-cloze" class="screen">
+    <div class="nav-bar">
+      <button class="nav-btn" onclick="showScreen('screen-main')">العودة إلى الأحاديث</button>
+    </div>
+    
+    <div class="title-bar">
+      <div class="title-bar-label">اختبار الاستظهار بالحجب التدريجي</div>
+      <div class="title-bar-name" id="cloze-hadith-title"></div>
+    </div>
+
+    <!-- STICKY FLOATING CONTROL BAR (Always visible while scrolling) -->
+    <div class="cloze-sticky-bar">
+      <button class="nav-btn" onclick="revealNextWords(1)">كشف كلمة</button>
+      <button class="nav-btn" onclick="revealNextWords(5)">كشف ٥ كلمات</button>
+      <button class="nav-btn" onclick="revealAllCloze()">كشف الكل</button>
+      <button class="nav-btn" style="background: var(--gold); color: var(--ink);" onclick="resetCloze()">إعادة الحجب</button>
+    </div>
+
+    <div class="cloze-container" id="cloze-words-wrapper"></div>
+  </div>
+
+  <!-- SCREEN 3: Written Recitation Exam -->
+  <div id="screen-written" class="screen">
+    <div class="nav-bar">
+      <button class="nav-btn" onclick="showScreen('screen-main')">العودة إلى الأحاديث</button>
+    </div>
+    <div class="title-bar">
+      <div class="title-bar-label">التسميع الكتابي الذكي</div>
+      <div class="title-bar-name" id="written-hadith-title"></div>
+    </div>
+    <div class="hadith-card" style="margin-top: 1rem; cursor: default;">
+      <div id="written-hint-box" style="display: none;" class="hint-text-display shown"></div>
+      <div style="text-align: center; margin: 0.6rem 0;">
+        <button class="hint-btn" onclick="toggleWrittenHint()">✦ إظهار تلميح لبداية الحديث</button>
+      </div>
+      <textarea id="written-input" class="test-writing-area" placeholder="اكتب نص الحديث النبوي هنا غيباً... (التخريج غير مطلوب كتابته وسيظهر لك بعد التصحيح)"></textarea>
+      <div style="text-align: center; margin-top: 1.4rem;">
+        <button class="nav-btn" style="background: var(--gold); color: var(--ink); padding: 0.75rem 2.6rem; font-size: 1.2rem; border-radius: 30px;" onclick="evaluateWrittenExam()">
+          تصحيح واستخراج الأخطاء
+        </button>
+      </div>
+      <div id="written-results" class="correction-result" style="display: none;"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Reading Modal -->
+<div class="modal-overlay" id="read-modal" onclick="closeModalOnOverlay(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title-wrap">
+        <h2 id="modal-title"></h2>
+        <p id="modal-sahabi"></p>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="hadith-text-rendered" id="modal-body-content"></div>
+      <div class="modal-takhrij" id="modal-takhrij"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/**
+ * Complete Database of the 50 Hadiths
+ */
+const HADITHS = [
+  {
+    id: 1,
+    title: "الْحَدِيثُ الأَوَّلُ",
+    sahabi: "عُمَرُ بْنُ الخَطَّابِ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى...»",
+    takhrij: "رَوَاهُ إِمَامَا المُحَدِّثِينَ: أَبُو عَبْدِاللَّهِ مُحَمَّدُ بْنُ إِسْمَاعِيلَ بْنِ إِبْرَاهِيمَ بْنِ المُغِيرَةِ بْنِ بَرْدِزْبَهْ البُخَارِيُّ، وَأَبُو الحُسَيْنِ مُسْلِمُ بْنُ الحَجَّاجِ بْنِ مُسْلِمٍ القُشَيْرِيُّ النَّيْسَابُورِيُّ رَضِيَ اللَّهُ عَنْهُمَا فِي صَحِيحَيْهِمَا اللَّذَيْنِ هُمَا أَصَحُّ الكُتُبِ المُصَنَّفَةِ.",
+    content: `عَنْ أَمِيرِ المُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الخَطَّابِ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ ﷺ يَقُولُ: «إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ، فَهِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ، وَمَنْ كَانَتْ هِجْرَتُهُ لِدُنْيَا يُصِيبُهَا أَوِ امْرَأَةٍ يَنْكِحُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ».`
+  },
+  {
+    id: 2,
+    title: "الْحَدِيثُ الثَّانِي",
+    sahabi: "عُمَرُ بْنُ الخَطَّابِ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«بَيْنَمَا نَحْنُ عِنْدَ رَسُولِ اللَّهِ ﷺ ذَاتَ يَوْمٍ إِذْ طَلَعَ عَلَيْنَا رَجُلٌ شَدِيدُ بَيَاضِ الثِّيَابِ...»",
+    takhrij: "رَوَاهُ مُسْلِمٌ.",
+    content: `عَنْ عُمَرَ رَضِيَ اللَّهُ عَنْهُ أَيْضاً قَالَ: بَيْنَمَا نَحْنُ عِنْدَ رَسُولِ اللَّهِ ﷺ ذَاتَ يَوْمٍ، إِذْ طَلَعَ عَلَيْنَا رَجُلٌ شَدِيدُ بَيَاضِ الثِّيَابِ، شَدِيدُ سَوَادِ الشَّعَرِ، لَا يُرَى عَلَيْهِ أَثَرُ السَّفَرِ، وَلَا يَعْرِفُهُ مِنَّا أَحَدٌ، حَتَّى جَلَسَ إِلَى النَّبِيِّ ﷺ، فَأَسْنَدَ رُكْبَتَيْهِ إِلَى رُكْبَتَيْهِ، وَوَضَعَ كَفَّيْهِ عَلَى فَخِذَيْهِ، وَقَالَ: يَا مُحَمَّدُ! أَخْبِرْنِي عَنِ الإِسْلَامِ؟ فَقَالَ رَسُولُ اللَّهِ ﷺ: «الإِسْلَامُ: أَنْ تَشْهَدَ أَلَّا إِلَهَ إِلَّا اللَّهُ، وَأَنَّ مُحَمَّداً رَسُولُ اللَّهِ، وَتُقِيمَ الصَّلَاةَ، وَتُؤْتِيَ الزَّكَاةَ، وَتَصُومَ رَمَضَانَ، وَتَحُجَّ البَيْتَ إِنِ اسْتَطَعْتَ إِلَيْهِ سَبِيلًا». قَالَ: صَدَقْتَ، فَعَجِبْنَا لَهُ يَسْأَلُهُ وَيُصَدِّقُهُ. قَالَ: فَأَخْبِرْنِي عَنِ الإِيمَانِ؟ قَالَ: «أَنْ تُؤْمِنَ بِاللَّهِ، وَمَلَائِكَتِهِ، وَكُتُبِهِ، وَرُسُلِهِ، وَاليَوْمِ الآخِرِ، وَتُؤْمِنَ بِالقَدَرِ خَيْرِهِ وَشَرِّهِ». قَالَ: صَدَقْتَ. قَالَ: فَأَخْبِرْنِي عَنِ الإِحْسَانِ؟ قَالَ: «أَنْ تَعْبُدَ اللَّهَ كَأَنَّكَ تَرَاهُ، فَإِنْ لَمْ تَكُنْ تَرَاهُ فَإِنَّهُ يَرَاكَ». قَالَ: فَأَخْبِرْنِي عَنِ السَّاعَةِ؟ قَالَ: «مَا المَسْؤُولُ عَنْهَا بِأَعْلَمَ مِنَ السَّائِلِ». قَالَ: فَأَخْبِرْنِي عَنْ أَمَارَاتِهَا؟، قَالَ: «أَنْ تَلِدَ الأَمَةُ رَبَّتَهَا، وَأَنْ تَرَى الحُفَاةَ العُرَاةَ العَالَةَ رِعَاءَ الشَّاءِ يَتَطَاوَلُونَ فِي البُنْيَانِ». قَالَ: ثُمَّ انْطَلَقَ، فَلَبِثْتُ مَلِيّاً، ثُمَّ قَالَ لِي: «يَا عُمَرُ، أَتَدْرِي مَنِ السَّائِلُ؟»، قُلْتُ: اللَّهُ وَرَسُولُهُ أَعْلَمُ، قَالَ: «فَإِنَّهُ جِبْرِيلُ أَتَاكُمْ يُعَلِّمُكُمْ دِينَكُمْ».`
+  },
+  {
+    id: 3,
+    title: "الْحَدِيثُ الثَّالِثُ",
+    sahabi: "عَبْدُ اللَّهِ بْنُ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا",
+    hint: "«بُنِيَ الإِسْلَامُ عَلَى خَمْسٍ: شَهَادَةِ أَلَّا إِلَهَ إِلَّا اللَّهُ...»",
+    takhrij: "رَوَاهُ البُخَارِيُّ، وَمُسْلِمٌ.",
+    content: `عَنْ أَبِي عَبْدِ الرَّحْمَنِ عَبْدِاللَّهِ بْنِ عُمَرَ بْنِ الخَطَّابِ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: سَمِعْتُ رَسُولَ اللَّهِ ﷺ يَقُولُ: «بُنِيَ الإِسْلَامُ عَلَى خَمْسٍ: شَهَادَةِ أَلَّا إِلَهَ إِلَّا اللَّهُ، وَأَنَّ مُحَمَّداً عَبْدُهُ وَرَسُولُهُ، وَإِقَامِ الصَّلَاةِ، وَإِيتَاءِ الزَّكَاةِ، وَحَجِّ البَيْتِ، وَصَوْمِ رَمَضَانَ».`
+  },
+  {
+    id: 4,
+    title: "الْحَدِيثُ الرَّابِعُ",
+    sahabi: "عَبْدُ اللَّهِ بْنُ مَسْعُودٍ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«إِنَّ أَحَدَكُمْ يُجْمَعُ خَلْقُهُ فِي بَطْنِ أُمِّهِ أَرْبَعِينَ يَوْماً...»",
+    takhrij: "رَوَاهُ البُخَارِيُّ، وَمُسْلِمٌ.",
+    content: `عَنْ أَبِي عَبْدِ الرَّحْمَنِ عَبْدِاللَّهِ بْنِ مَسْعُودٍ رَضِيَ اللَّهُ عَنْهُ قَالَ: حَدَّثَنَا رَسُولُ اللَّهِ ﷺ وَهُوَ الصَّادِقُ المَصْدُوقُ: «إِنَّ أَحَدَكُمْ يُجْمَعُ خَلْقُهُ فِي بَطْنِ أُمِّهِ أَرْبَعِينَ يَوْماً نُطْفَةً، ثُمَّ يَكُونُ عَلَقَةً مِثْلَ ذَلِكَ، ثُمَّ يَكُونُ مُضْغَةً مِثْلَ ذَلِكَ، ثُمَّ يُرْسَلُ إِلَيْهِ المَلَكُ، فَيَنْفُخُ فِيهِ الرُّوحَ، وَيُؤْمَرُ بِأَرْبَعِ كَلِمَاتٍ: بِكَتْبِ رِزْقِهِ، وَأَجَلِهِ، وَعَمَلِهِ، وَشَقِيٌّ أَوْ سَعِيدٌ. فَوَالَّذِي لَا إِلَهَ غَيْرُهُ إِنَّ أَحَدَكُمْ لَيَعْمَلُ بِعَمَلِ أَهْلِ الجَنَّةِ حَتَّى مَا يَكُونَ بَيْنَهُ وَبَيْنَهَا إِلَّا ذِرَاعٌ، فَيَسْبِقُ عَلَيْهِ الكِتَابُ فَيَعْمَلُ بِعَمَلِ أَهْلِ النَّارِ فَيَدْخُلُهَا، وَإِنَّ أَحَدَكُمْ لَيَعْمَلُ بِعَمَلِ أَهْلِ النَّارِ حَتَّى مَا يَكُونَ بَيْنَهُ وَبَيْنَهَا إِلَّا ذِرَاعٌ، فَيَسْبِقُ عَلَيْهِ الكِتَابُ، فَيَعْمَلُ بِعَمَلِ أَهْلِ الجَنَّةِ فَيَدْخُلُهَا».`
+  },
+  {
+    id: 5,
+    title: "الْحَدِيثُ الخَامِسُ",
+    sahabi: "أُمُّ المُؤْمِنِينَ عَائِشَةُ رَضِيَ اللَّهُ عَنْهَا",
+    hint: "«مَنْ أَحْدَثَ فِي أَمْرِنَا هَذَا مَا لَيْسَ مِنْهُ فَهُوَ رَدٌّ»",
+    takhrij: "رَوَاهُ البُخَارِيُّ، وَمُسْلِمٌ. وَفِي رِوَايَةٍ لِمُسْلِمٍ: «مَنْ عَمِلَ عَمَلًا لَيْسَ عَلَيْهِ أَمْرُنَا فَهُوَ رَدٌّ».",
+    content: `عَنْ أُمِّ المُؤْمِنِينَ أُمِّ عَبْدِاللَّهِ عَائِشَةَ رَضِيَ اللَّهُ عَنْهَا قَالَتْ: قَالَ رَسُولُ اللَّهِ ﷺ: «مَنْ أَحْدَثَ فِي أَمْرِنَا هَذَا مَا لَيْسَ مِنْهُ فَهُوَ رَدٌّ». <span class="text-red">وَفِي رِوَايَةٍ لِمُسْلِمٍ: «مَنْ عَمِلَ عَمَلًا لَيْسَ عَلَيْهِ أَمْرُنَا فَهُوَ رَدٌّ».</span>`
+  },
+  {
+    id: 6,
+    title: "الْحَدِيثُ السَّادِسُ",
+    sahabi: "النُّعْمَانُ بْنُ بَشِيرٍ رَضِيَ اللَّهُ عَنْهُمَا",
+    hint: "«إِنَّ الحَلَالَ بَيِّنٌ، وَإِنَّ الحَرَامَ بَيِّنٌ، وَبَيْنَهُمَا مُشْتَبَهَاتٌ...»",
+    takhrij: "رَوَاهُ البُخَارِيُّ، وَمُسْلِمٌ.",
+    content: `عَنْ أَبِي عَبْدِ اللَّهِ النُّعْمَانِ بْنِ بَشِيرٍ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: سَمِعْتُ رَسُولَ اللَّهِ ﷺ يَقُولُ: «إِنَّ الحَلَالَ بَيِّنٌ، وَإِنَّ الحَرَامَ بَيِّنٌ، وَبَيْنَهُمَا مُشْتَبَهَاتٌ، لَا يَعْلَمُهُنَّ كَثِيرٌ مِنَ النَّاسِ، فَمَنِ اتَّقَى الشُّبُهَاتِ اسْتَبْرَأَ لِدِينِهِ وَعِرْضِهِ، وَمَنْ وَقَعَ فِي الشُّبُهَاتِ وَقَعَ فِي الحَرَامِ؛ كَالرَّاعِي يَرْعَى حَوْلَ الحِمَى يُوشِكُ أَنْ يَرْتَعَ فِيهِ. أَلَا وَإِنَّ لِكُلِّ مَلِكٍ حِمًى، أَلَا وَإِنَّ حِمَى اللَّهِ مَحَارِمُهُ، أَلَا وَإِنَّ فِي الجَسَدِ مُضْغَةً إِذَا صَلَحَتْ صَلَحَ الجَسَدُ كُلُّهُ، وَإِذَا فَسَدَتْ فَسَدَ الجَسَدُ كُلُّهُ، أَلَا وَهِيَ القَلْبُ».`
+  },
+  {
+    id: 7,
+    title: "الْحَدِيثُ السَّابِعُ",
+    sahabi: "تَمِيمُ بْنُ أَوْسٍ الدَّارِيُّ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«الدِّينُ النَّصِيحَةُ» قُلْنَا: لِمَنْ؟...",
+    takhrij: "رَوَاهُ مُسْلِمٌ.",
+    content: `عَنْ أَبِي رُقَيَّةَ تَمِيمِ بْنِ أَوْسٍ الدَّارِيِّ رَضِيَ اللَّهُ عَنْهُ أَنَّ النَّبِيَّ ﷺ قَالَ: «الدِّينُ النَّصِيحَةُ»، قُلْنَا لِمَنْ؟ قَالَ: «لِلَّهِ، وَلِكِتَابِهِ، وَلِرَسُولِهِ، وَلِأَئِمَّةِ المُسْلِمِينَ، وَعَامَّتِهِمْ».`
+  },
+  {
+    id: 8,
+    title: "الْحَدِيثُ الثَّامِنُ",
+    sahabi: "عَبْدُ اللَّهِ بْنُ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا",
+    hint: "«أُمِرْتُ أَنْ أُقَاتِلَ النَّاسَ حَتَّى يَشْهَدُوا أَنْ لَا إِلَهَ إِلَّا اللَّهُ...»",
+    takhrij: "رَوَاهُ البُخَارِيُّ، وَمُسْلِمٌ.",
+    content: `عَنِ ابْنِ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: «أُمِرْتُ أَنْ أُقَاتِلَ النَّاسَ حَتَّى يَشْهَدُوا أَنْ لَا إِلَهَ إِلَّا اللَّهُ، وَأَنَّ مُحَمَّداً رَسُولُ اللَّهِ، وَيُقِيمُوا الصَّلَاةَ، وَيُؤْتُوا الزَّكَاةَ، فَإِذَا فَعَلُوا ذَلِكَ، عَصَمُوا مِنِّي دِمَاءَهُمْ وَأَمْوَالَهُمْ، إِلَّا بِحَقِّ الإِسْلَامِ، وَحِسَابُهُمْ عَلَى اللَّهِ تَعَالَى».`
+  },
+  {
+    id: 9,
+    title: "الْحَدِيثُ التَّاسِعُ",
+    sahabi: "أَبُو هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«مَا نَهَيْتُكُمْ عَنْهُ فَاجْتَنِبُوهُ، وَمَا أَمَرْتُكُمْ بِهِ فَافْعَلُوا مِنْهُ مَا اسْتَطَعْتُمْ...»",
+    takhrij: "رَوَاهُ البُخَارِيُّ، وَمُسْلِمٌ.",
+    content: `عَنْ أَبِي هُرَيْرَةَ عَبْدِ الرَّحْمَنِ بْنِ صَخْرٍ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ ﷺ يَقُولُ: «مَا نَهَيْتُكُمْ عَنْهُ فَاجْتَنِبُوهُ، وَمَا أَمَرْتُكُمْ بِهِ فَافْعَلُوا مِنْهُ مَا اسْتَطَعْتُمْ، فَإِنَّمَا أَهْلَكَ الَّذِينَ مِنْ قَبْلِكُمْ كَثْرَةُ مَسَائِلِهِمْ وَاخْتِلَافُهُمْ عَلَى أَنْبِيَائِهِمْ».`
+  },
+  {
+    id: 10,
+    title: "الْحَدِيثُ العَاشِرُ",
+    sahabi: "أَبُو هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«إِنَّ اللَّهَ طَيِّبٌ لَا يَقْبَلُ إِلَّا طَيِّباً...»",
+    takhrij: "رَوَاهُ مُسْلِمٌ.",
+    content: `عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «إِنَّ اللَّهَ طَيِّبٌ لَا يَقْبَلُ إِلَّا طَيِّباً، وَإِنَّ اللَّهَ تَعَالَى أَمَرَ المُؤْمِنِينَ بِمَا أَمَرَ بِهِ المُرْسَلِينَ، فَقَالَ تَعَالَى: <span class="quran-ayah">﴿يَٰٓأَيُّهَا ٱلرُّسُلُ كُلُواْ مِنَ ٱلطَّيِّبَٰتِ وَٱعْمَلُواْ صَٰلِحًا﴾</span>، وَقَالَ تَعَالَى: <span class="quran-ayah">﴿يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ كُلُواْ مِن طَيِّبَٰتِ مَا رَزَقْنَٰكُمْ﴾</span>. ثُمَّ ذَكَرَ الرَّجُلَ يُطِيلُ السَّفَرَ، أَشْعَثَ أَغْبَرَ، يَمُدُّ يَدَيْهِ إِلَى السَّمَاءِ: يَا رَبِّ يَا رَبِّ، وَمَطْعَمُهُ حَرَامٌ، وَمَشْرَبُهُ حَرَامٌ، وَمَلْبَسُهُ حَرَامٌ، وَغُذِيَ بِالحَرَامِ، فَأَنَّى يُسْتَجَابُ لِذَلِكَ؟».`
+  },
+  {
+    id: 11,
+    title: "الْحَدِيثُ الحَادِي عَشَرَ",
+    sahabi: "الحَسَنُ بْنُ عَلِيٍّ رَضِيَ اللَّهُ عَنْهُمَا",
+    hint: "«دَعْ مَا يَرِيبُكَ إِلَى مَا لَا يَرِيبُكَ»",
+    takhrij: "رَوَاهُ التِّرْمِذِيُّ، وَالنَّسَائِيُّ، وَقَالَ التِّرْمِذِيُّ: حَدِيثٌ حَسَنٌ صَحِيحٌ.",
+    content: `عَنْ أَبِي مُحَمَّدٍ الحَسَنِ بْنِ عَلِيِّ بْنِ أَبِي طَالِبٍ سِبْطِ رَسُولِ اللَّهِ ﷺ وَرَيْحَانَتِهِ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: حَفِظْتُ مِنْ رَسُولِ اللَّهِ ﷺ: «دَعْ مَا يَرِيبُكَ إِلَى مَا لَا يَرِيبُكَ».`
+  },
+  {
+    id: 12,
+    title: "الْحَدِيثُ الثَّانِي عَشَرَ",
+    sahabi: "أَبُو هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«مِنْ حُسْنِ إِسْلَامِ المَرْءِ تَرْكُهُ مَا لَا يَعْنِيهِ»",
+    takhrij: "حَدِيثٌ حَسَنٌ، رَوَاهُ التِّرْمِذِيُّ وَغَيْرُهُ.",
+    content: `عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «مِنْ حُسْنِ إِسْلَامِ المَرْءِ تَرْكُهُ مَا لَا يَعْنِيهِ».`
+  },
+  {
+    id: 13,
+    title: "الْحَدِيثُ الثَّالِثَ عَشَرَ",
+    sahabi: "أَنَسُ بْنُ مَالِكٍ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ»",
+    takhrij: "رَوَاهُ البُخَارِيُّ، وَمُسْلِمٌ.",
+    content: `عَنْ أَبِي حَمْزَةَ أَنَسِ بْنِ مَالِكٍ رَضِيَ اللَّهُ عَنْهُ خَادِمِ رَسُولِ اللَّهِ ﷺ، عَنِ النَّبِيِّ ﷺ قَالَ: «لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ».`
+  },
+  {
+    id: 14,
+    title: "الْحَدِيثُ الرَّابِعَ عَشَرَ",
+    sahabi: "عَبْدُ اللَّهِ بْنُ مَسْعُودٍ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«لَا يَحِلُّ دَمُ امْرِئٍ مُسْلِمٍ إِلَّا بِإِحْدَى ثَلَاثٍ...»",
+    takhrij: "رَوَاهُ البُخَارِيُّ، وَمُسْلِمٌ.",
+    content: `عَنِ ابْنِ مَسْعُودٍ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «لَا يَحِلُّ دَمُ امْرِئٍ مُسْلِمٍ إِلَّا بِإِحْدَى ثَلَاثٍ: الثَّيِّبُ الزَّانِي، وَالنَّفْسُ بِالنَّفْسِ، وَالتَّارِكُ لِدِينِهِ المُفَارِقُ لِلْجَمَاعَةِ».`
+  },
+  {
+    id: 15,
+    title: "الْحَدِيثُ الخَامِسَ عَشَرَ",
+    sahabi: "أَبُو هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَاليَوْمِ الآخِرِ فَلْيَقُلْ خَيْراً أَوْ لِيَصْمُتْ...»",
+    takhrij: "رَوَاهُ البُخَارِيُّ، وَمُسْلِمٌ.",
+    content: `عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: «مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَاليَوْمِ الآخِرِ فَلْيَقُلْ خَيْراً أَوْ لِيَصْمُتْ، وَمَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَاليَوْمِ الآخِرِ فَلْيُكْرِمْ جَارَهُ، وَمَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَاليَوْمِ الآخِرِ فَلْيُكْرِمْ ضَيْفَهُ».`
+  },
+  {
+    id: 16,
+    title: "الْحَدِيثُ السَّادِسَ عَشَرَ",
+    sahabi: "أَبُو هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«أَوْصِنِي: قَالَ: لَا تَغْضَبْ، فَرَدَّدَ مِرَاراً قَالَ: لَا تَغْضَبْ»",
+    takhrij: "رَوَاهُ البُخَارِيُّ.",
+    content: `عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ أَنَّ رَجُلًا قَالَ لِلنَّبِيِّ ﷺ أَوْصِنِي قَالَ: «لَا تَغْضَبْ»، فَرَدَّدَ مِرَاراً قَالَ: «لَا تَغْضَبْ».`
+  },
+  {
+    id: 17,
+    title: "الْحَدِيثُ السَّابِعَ عَشَرَ",
+    sahabi: "شَدَّادُ بْنُ أَوْسٍ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«إِنَّ اللَّهَ كَتَبَ الإِحْسَانَ عَلَى كُلِّ شَيْءٍ، فَإِذَا قَتَلْتُمْ فَأَحْسِنُوا القِتْلَةَ...»",
+    takhrij: "رَوَاهُ مُسْلِمٌ.",
+    content: `عَنْ أَبِي يَعْلَى شَدَّادِ بْنِ أَوْسٍ رَضِيَ اللَّهُ عَنْهُ، عَنْ رَسُولِ اللَّهِ ﷺ قَالَ: «إِنَّ اللَّهَ كَتَبَ الإِحْسَانَ عَلَى كُلِّ شَيْءٍ، فَإِذَا قَتَلْتُمْ فَأَحْسِنُوا القِتْلَةَ، وَإِذَا ذَبَحْتُمْ فَأَحْسِنُوا الذِّبْحَةَ، وَلْيُحِدَّ أَحَدُكُمْ شَفْرَتَهُ، وَلْيُرِحْ ذَبِيحَتَهُ».`
+  },
+  {
+    id: 18,
+    title: "الْحَدِيثُ الثَّامِنَ عَشَرَ",
+    sahabi: "أَبُو ذَرٍّ وَمُعَاذُ بْنُ جَبَلٍ رَضِيَ اللَّهُ عَنْهُمَا",
+    hint: "«اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ، وَأَتْبِعِ السَّيِّئَةَ الحَسَنَةَ تَمْحُهَا...»",
+    takhrij: "رَوَاهُ التِّرْمِذِيُّ، وَقَالَ: حَدِيثٌ حَسَنٌ، وَفِي بَعْضِ النُّسَخِ: حَسَنٌ صَحِيحٌ.",
+    content: `عَنْ أَبِي ذَرٍّ جُنْدَبِ بْنِ جُنَادَةَ، وَأَبِي عَبْدِ الرَّحْمَنِ مُعَاذِ بْنِ جَبَلٍ رَضِيَ اللَّهُ عَنْهُمَا عَنْ رَسُولِ اللَّهِ ﷺ قَالَ: «اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ، وَأَتْبِعِ السَّيِّئَةَ الحَسَنَةَ تَمْحُهَا، وَخَالِقِ النَّاسَ بِخُلُقٍ حَسَنٍ».`
+  },
+  {
+    id: 19,
+    title: "الْحَدِيثُ التَّاسِعَ عَشَرَ",
+    sahabi: "عَبْدُ اللَّهِ بْنُ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا",
+    hint: "«يَا غُلَامُ، إِنِّي أُعَلِّمُكَ كَلِمَاتٍ: احْفَظِ اللَّهَ يَحْفَظْكَ...»",
+    takhrij: "رَوَاهُ التِّرْمِذِيُّ، وَقَالَ: حَدِيثٌ حَسَنٌ صَحِيحٌ. وَفِي رِوَايَةِ غَيْرِ التِّرْمِذِيِّ: «احْفَظِ اللَّهَ تَجِدْهُ أَمَامَكَ، تَعَرَّفْ إِلَى اللَّهِ فِي الرَّخَاءِ يَعْرِفْكَ فِي الشِّدَّةِ، وَاعْلَمْ أَنَّ مَا أَخْطَأَكَ لَمْ يَكُنْ لِيُصِيبَكَ، وَمَا أَصَابَكَ لَمْ يَكُنْ لِيُخْطِئَكَ، وَاعْلَمْ أَنَّ النَّصْرَ مَعَ الصَّبْرِ، وَأَنَّ الفَرَجَ مَعَ الكَرْبِ، وَأَنَّ مَعَ العُسْرِ يُسْراً».",
+    content: `عَنِ أَبِي العَبَّاسِ عَبْدِ اللَّهِ بْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: كُنْتُ خَلْفَ النَّبِيِّ ﷺ يَوْماً فَقَالَ: «يَا غُلَامُ، إِنِّي أُعَلِّمُكَ كَلِمَاتٍ، احْفَظِ اللَّهَ يَحْفَظْكَ، احْفَظِ اللَّهَ تَجِدْهُ تُجَاهَكَ، إِذَا سَأَلْتَ فَاسْأَلِ اللَّهَ، وَإِذَا اسْتَعَنْتَ فَاسْتَعِنْ بِاللَّهِ، وَاعْلَمْ أَنَّ الأُمَّةَ لَوِ اجْتَمَعَتْ عَلَى أَنْ يَنْفَعُوكَ بِشَيْءٍ لَمْ يَنْفَعُوكَ إِلَّا بِشَيْءٍ قَدْ كَتَبَهُ اللَّهُ لَكَ، وَإِنِ اجْتَمَعُوا عَلَى أَنْ يَضُرُّوكَ بِشَيْءٍ لَمْ يَضُرُّوكَ إِلَّا بِشَيْءٍ قَدْ كَتَبَهُ اللَّهُ عَلَيْكَ، رُفِعَتِ الأَقْلَامُ، وَجَفَّتِ الصُّحُفُ». <span class="text-red">وَفِي رِوَايَةِ غَيْرِ التِّرْمِذِيِّ: «احْفَظِ اللَّهَ تَجِدْهُ أَمَامَكَ، تَعَرَّفْ إِلَى اللَّهِ فِي الرَّخَاءِ يَعْرِفْكَ فِي الشِّدَّةِ، وَاعْلَمْ أَنَّ مَا أَخْطَأَكَ لَمْ يَكُنْ لِيُصِيبَكَ، وَمَا أَصَابَكَ لَمْ يَكُنْ لِيُخْطِئَكَ، وَاعْلَمْ أَنَّ النَّصْرَ مَعَ الصَّبْرِ، وَأَنَّ الفَرَجَ مَعَ الكَرْبِ، وَأَنَّ مَعَ العُسْرِ يُسْراً».</span>`
+  },
+  {
+    id: 20,
+    title: "الْحَدِيثُ العِشْرُونَ",
+    sahabi: "أَبُو مَسْعُودٍ عُقْبَةُ بْنُ عَمْرٍو الأَنْصَارِيُّ",
+    hint: "«إِنَّ مِمَّا أَدْرَكَ النَّاسُ مِنْ كَلَامِ النُّبُوَّةِ الأُولَى إِذَا لَمْ تَسْتَحِ فَاصْنَعْ مَا شِئْتَ»",
+    takhrij: "رَوَاهُ البُخَارِيُّ.",
+    content: `عَنْ أَبِي مَسْعُودٍ عُقْبَةَ بْنِ عَمْرٍو الأَنْصَارِيِّ البَدْرِيِّ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «إِنَّ مِمَّا أَدْرَكَ النَّاسُ مِنْ كَلَامِ النُّبُوَّةِ الأُولَى إِذَا لَمْ تَسْتَحِ فَاصْنَعْ مَا شِئْتَ».`
+  },
+  {
+    id: 21,
+    title: "الْحَدِيثُ الحَادِي وَالعِشْرُونَ",
+    sahabi: "سُفْيَانُ بْنُ عَبْدِ اللَّهِ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«قُلْ آمَنْتُ بِاللَّهِ ثُمَّ اسْتَقِمْ»",
+    takhrij: "رَوَاهُ مُسْلِمٌ.",
+    content: `عَنْ أَبِي عَمْرٍو - وَقِيلَ: أَبِي عَمْرَةَ - سُفْيَانَ بْنِ عَبْدِ اللَّهِ رَضِيَ اللَّهُ عَنْهُ قَالَ: قُلْتُ: يَا رَسُولَ اللَّهِ قُلْ لِي فِي الإِسْلَامِ قَوْلًا لَا أَسْأَلُ عَنْهُ أَحَداً غَيْرَكَ، قَالَ: «قُلْ آمَنْتُ بِاللَّهِ ثُمَّ اسْتَقِمْ».`
+  },
+  {
+    id: 22,
+    title: "الْحَدِيثُ الثَّانِي وَالعِشْرُونَ",
+    sahabi: "جَابِرُ بْنُ عَبْدِ اللَّهِ رَضِيَ اللَّهُ عَنْهُمَا",
+    hint: "«أَرَأَيْتَ إِذَا صَلَّيْتُ المَكْتُوبَاتِ، وَصُمْتُ رَمَضَانَ، وَأَحْلَلْتُ الحَلَالَ...»",
+    takhrij: "رَوَاهُ مُسْلِمٌ.",
+    content: `عَنْ أَبِي عَبْدِاللَّهِ جَابِرِ بْنِ عَبْدِاللَّهِ الأَنْصَارِيِّ رَضِيَ اللَّهُ عَنْهُمَا أَنَّ رَجُلًا سَأَلَ رَسُولَ اللَّهِ ﷺ فَقَالَ: أَرَأَيْتَ إِذَا صَلَّيْتُ المَكْتُوبَاتِ، وَصُمْتُ رَمَضَانَ، وَأَحْلَلْتُ الحَلَالَ، وَحَرَّمْتُ الحَرَامَ، وَلَمْ أَزِدْ عَلَى ذَلِكَ شَيْئاً أَأَدْخُلُ الجَنَّةَ؟ قَالَ: «نَعَمْ». <span class="text-red">وَمَعْنَى (حَرَّمْتُ الحَرَامَ): اجْتَنَبْتُهُ، وَمَعْنَى (أَحْلَلْتُ الحَلَالَ): فَعَلْتُهُ مُعْتَقِداً حِلَّهُ.</span>`
+  },
+  {
+    id: 23,
+    title: "الْحَدِيثُ الثَّالِثُ وَالعِشْرُونَ",
+    sahabi: "أَبُو مَالِكٍ الأَشْعَرِيُّ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«الطُّهُورُ شَطْرُ الإِيمَانِ، وَالحَمْدُ لِلَّهِ تَمْلَأُ المِيزَانَ...»",
+    takhrij: "رَوَاهُ مُسْلِمٌ.",
+    content: `عَنْ أَبِي مَالِكٍ الحَارِثِ بْنِ عَاصِمٍ الأَشْعَرِيِّ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «الطُّهُورُ شَطْرُ الإِيمَانِ، وَالحَمْدُ لِلَّهِ تَمْلَأُ المِيزَانَ، وَسُبْحَانَ اللَّهِ وَالحَمْدُ لِلَّهِ تَمْلَآنِ - أَوْ تَمْلَأُ - مَا بَيْنَ السَّمَاءِ وَالأَرْضِ، وَالصَّلَاةُ نُورٌ، وَالصَّدَقَةُ بُرْهَانٌ، وَالصَّبْرُ ضِيَاءٌ، وَالقُرْآنُ حُجَّةٌ لَكَ أَوْ عَلَيْكَ، كُلُّ النَّاسِ يَغْدُو، فَبَائِعٌ نَفْسَهُ فَمُعْتِقُهَا، أَوْ مُوبِقُهَا».`
+  },
+  {
+    id: 24,
+    title: "الْحَدِيثُ الرَّابِعُ وَالعِشْرُونَ",
+    sahabi: "أَبُو ذَرٍّ الغِفَارِيُّ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«يَا عِبَادِي إِنِّي حَرَّمْتُ الظُّلْمَ عَلَى نَفْسِي وَجَعَلْتُهُ بَيْنَكُمْ مُحَرَّماً...»",
+    takhrij: "رَوَاهُ مُسْلِمٌ.",
+    content: `عَنْ أَبِي ذَرٍّ الغِفَارِيِّ رَضِيَ اللَّهُ عَنْهُ، عَنِ النَّبِيِّ ﷺ فِيمَا رَوَى عَنِ اللَّهِ عَزَّ وَجَلَّ أَنَّهُ قَالَ: «يَا عِبَادِي إِنِّي حَرَّمْتُ الظُّلْمَ عَلَى نَفْسِي وَجَعَلْتُهُ بَيْنَكُمْ مُحَرَّماً فَلَا تَظَالَمُوا. يَا عِبَادِي كُلُّكُمْ ضَالٌّ إِلَّا مَنْ هَدَيْتُهُ، فَاسْتَهْدُونِي أَهْدِكُمْ. يَا عِبَادِي كُلُّكُمْ جَائِعٌ إِلَّا مَنْ أَطْعَمْتُهُ، فَاسْتَطْعِمُونِي أُطْعِمْكُمْ. يَا عِبَادِي كُلُّكُمْ عَارٍ إِلَّا مَنْ كَسَوْتُهُ، فَاسْتَكْسُونِي أَكْسُكُمْ. يَا عِبَادِي إِنَّكُمْ تُخْطِئُونَ بِاللَّيْلِ وَالنَّهَارِ، وَأَنَا أَغْفِرُ الذُّنُوبَ جَمِيعاً، فَاسْتَغْفِرُونِي أَغْفِرْ لَكُمْ. يَا عِبَادِي إِنَّكُمْ لَنْ تَبْلُغُوا ضَرِّي فَتَضُرُّونِي، وَلَنْ تَبْلُغُوا نَفْعِي فَتَنْفَعُونِي. يَا عِبَادِي لَوْ أَنَّ أَوَّلَكُمْ وَآخِرَكُمْ، وَإِنْسَكُمْ وَجِنَّكُمْ كَانُوا عَلَى أَتْقَى قَلْبِ رَجُلٍ وَاحِدٍ مِنْكُمْ، مَا زَادَ ذَلِكَ فِي مُلْكِي شَيْئاً. يَا عِبَادِي لَوْ أَنَّ أَوَّلَكُمْ وَآخِرَكُمْ، وَإِنْسَكُمْ وَجِنَّكُمْ كَانُوا عَلَى أَفْجَرِ قَلْبِ رَجُلٍ وَاحِدٍ، مَا نَقَصَ ذَلِكَ مِنْ مُلْكِي شَيْئاً. يَا عِبَادِي لَوْ أَنَّ أَوَّلَكُمْ وَآخِرَكُمْ، وَإِنْسَكُمْ وَجِنَّكُمْ قَامُوا فِي صَعِيدٍ وَاحِدٍ، فَسَأَلُونِي فَأَعْطَيْتُ كُلَّ وَاحِدٍ مَسْأَلَتَهُ مَا نَقَصَ ذَلِكَ مِمَّا عِنْدِي إِلَّا كَمَا يَنْقُصُ المِخْيَطُ إِذَا أُدْخِلَ البَحْرَ. يَا عِبَادِي إِنَّمَا هِيَ أَعْمَالُكُمْ أُحْصِيهَا لَكُمْ، ثُمَّ أُوَفِّيكُمْ إِيَّاهَا، فَمَنْ وَجَدَ خَيْراً فَلْيَحْمَدِ اللَّهَ، وَمَنْ وَجَدَ غَيْرَ ذَلِكَ، فَلَا يَلُومَنَّ إِلَّا نَفْسَهُ».`
+  },
+  {
+    id: 25,
+    title: "الْحَدِيثُ الخَامِسُ وَالعِشْرُونَ",
+    sahabi: "أَبُو ذَرٍّ الغِفَارِيُّ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«ذَهَبَ أَهْلُ الدُّثُورِ بِالأُجُورِ، يُصَلُّونَ كَمَا نُصَلِّي...»",
+    takhrij: "رَوَاهُ مُسْلِمٌ.",
+    content: `عَنْ أَبِي ذَرٍّ رَضِيَ اللَّهُ عَنْهُ أَيْضاً، أَنَّ نَاساً مِنْ أَصْحَابِ رَسُولِ اللَّهِ ﷺ قَالُوا لِلنَّبِيِّ ﷺ: يَا رَسُولَ اللَّهِ ذَهَبَ أَهْلُ الدُّثُورِ بِالأُجُورِ، يُصَلُّونَ كَمَا نُصَلِّي، وَيَصُومُونَ كَمَا نَصُومُ، وَيَتَصَدَّقُونَ بِفُضُولِ أَمْوَالِهِمْ، قَالَ: «أَوَ لَيْسَ قَدْ جَعَلَ اللَّهُ لَكُمْ مَا تَصَّدَّقُونَ، إِنَّ بِكُلِّ تَسْبِيحَةٍ صَدَقَةً، وَكُلِّ تَكْبِيرَةٍ صَدَقَةً، وَكُلِّ تَحْمِيدَةٍ صَدَقَةً، وَكُلِّ تَهْلِيلَةٍ صَدَقَةً، وَأَمْرٌ بِالمَعْرُوفِ صَدَقَةٌ، وَنَهْيٌ عَنْ مُنْكَرٍ صَدَقَةٌ، وَفِي بُضْعِ أَحَدِكُمْ صَدَقَةٌ»، قَالُوا: يَا رَسُولَ اللَّهِ أَيَأْتِي أَحَدُنَا شَهْوَتَهُ وَيَكُونُ لَهُ فِيهَا أَجْرٌ؟ قَالَ: «أَرَأَيْتُمْ لَوْ وَضَعَهَا فِي حَرَامٍ، أَكَانَ عَلَيْهِ فِيهَا وِزْرٌ؟، فَكَذَلِكَ إِذَا وَضَعَهَا فِي الحَلَالِ، كَانَ لَهُ أَجْرٌ».`
+  },
+  {
+    id: 26,
+    title: "الْحَدِيثُ السَّادِسُ وَالعِشْرُونَ",
+    sahabi: "أَبُو هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«كُلُّ سُلَامَى مِنَ النَّاسِ عَلَيْهِ صَدَقَةٌ، كُلَّ يَوْمٍ تَطْلُعُ فِيهِ الشَّمْسُ...»",
+    takhrij: "رَوَاهُ البُخَارِيُّ، وَمُسْلِمٌ.",
+    content: `عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «كُلُّ سُلَامَى مِنَ النَّاسِ عَلَيْهِ صَدَقَةٌ، كُلَّ يَوْمٍ تَطْلُعُ فِيهِ الشَّمْسُ تَعْدِلُ بَيْنَ الاِثْنَيْنِ صَدَقَةٌ، وَتُعِينُ الرَّجُلَ فِي دَابَّتِهِ فَتَحْمِلُهُ عَلَيْهَا أَوْ تَرْفَعُ لَهُ عَلَيْهَا مَتَاعَهُ صَدَقَةٌ، وَالكَلِمَةُ الطَّيِّبَةُ صَدَقَةٌ، وَكُلُّ خَطْوَةٍ تَمْشِيهَا إِلَى الصَّلَاةِ صَدَقَةٌ، وَتُمِيطُ الأَذَى عَنِ الطَّرِيقِ صَدَقَةٌ».`
+  },
+  {
+    id: 27,
+    title: "الْحَدِيثُ السَّابِعُ وَالعِشْرُونَ",
+    sahabi: "النَّوَّاسُ بْنُ سَمْعَانَ وَوَابِصَةُ بْنُ مَعْبَدٍ",
+    hint: "«البِرُّ حُسْنُ الخُلُقِ، وَالإِثْمُ مَا حَاكَ فِي نَفْسِكَ...»",
+    takhrij: "رَوَاهُ مُسْلِمٌ. وَفِي حَدِيثِ وَابِصَةَ: حَدِيثٌ حَسَنٌ رَوَيْنَاهُ فِي مُسْنَدَيِ الإِمَامَيْنِ أَحْمَدَ بْنِ حَنْبَلٍ، وَالدَّارِمِيِّ بِإِسْنَادٍ حَسَنٍ.",
+    content: `عَنِ النَّوَّاسِ بْنِ سَمْعَانَ رَضِيَ اللَّهُ عَنْهُ، عَنِ النَّبِيِّ ﷺ قَالَ: «البِرُّ حُسْنُ الخُلُقِ، وَالإِثْمُ مَا حَاكَ فِي نَفْسِكَ، وَكَرِهْتَ أَنْ يَطَّلِعَ عَلَيْهِ النَّاسُ». <span class="text-red">وَعَنْ وَابِصَةَ بْنِ مَعْبَدٍ رَضِيَ اللَّهُ عَنْهُ قَالَ: أَتَيْتُ رَسُولَ اللَّهِ ﷺ فَقَالَ: «جِئْتَ تَسْأَلُ عَنِ البِرِّ وَالإِثْمِ؟»، قُلْتُ: نَعَمْ، قَالَ: «اسْتَفْتِ قَلْبَكَ، البِرُّ مَا اطْمَأَنَّتْ إِلَيْهِ النَّفْسُ، وَاطْمَأَنَّ إِلَيْهِ القَلْبُ، وَالإِثْمُ مَا حَاكَ فِي النَّفْسِ، وَتَرَدَّدَ فِي الصَّدْرِ، وَإِنْ أَفْتَاكَ النَّاسُ وَأَفْتَوْكَ».</span>`
+  },
+  {
+    id: 28,
+    title: "الْحَدِيثُ الثَّامِنُ وَالعِشْرُونَ",
+    sahabi: "العِرْبَاضُ بْنُ سَارِيَةَ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«وَعَظَنَا رَسُولُ اللَّهِ ﷺ مَوْعِظَةً وَجِلَتْ مِنْهَا القُلُوبُ... أُوصِيكُمْ بِتَقْوَى اللَّهِ»",
+    takhrij: "رَوَاهُ أَبُو دَاوُدَ، وَالتِّرْمِذِيُّ، وَقَالَ: حَدِيثٌ حَسَنٌ صَحِيحٌ.",
+    content: `عَنْ أَبِي نَجِيحٍ العِرْبَاضِ بْنِ سَارِيَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: وَعَظَنَا رَسُولُ اللَّهِ ﷺ مَوْعِظَةً وَجِلَتْ مِنْهَا القُلُوبُ، وَذَرَفَتْ مِنْهَا العُيُونُ، فَقُلْنَا: يَا رَسُولَ اللَّهِ كَأَنَّهَا مَوْعِظَةُ مُوَدِّعٍ فَأَوْصِنَا. قَالَ: «أُوصِيكُمْ بِتَقْوَى اللَّهِ، وَالسَّمْعِ وَالطَّاعَةِ، وَإِنْ تَأَمَّرَ عَلَيْكُمْ عَبْدٌ، فَإِنَّهُ مَنْ يَعِشْ مِنْكُمْ بَعْدِي فَسَيَرَى اخْتِلَافاً كَثِيراً، فَعَلَيْكُمْ بِسُنَّتِي، وَسُنَّةِ الخُلَفَاءِ الرَّاشِدِينَ المَهْدِيِّينَ، عَضُّوا عَلَيْهَا بِالنَّوَاجِذِ، وَإِيَّاكُمْ وَمُحْدَثَاتِ الأُمُورِ، فَإِنَّ كُلَّ بِدْعَةٍ ضَلَالَةٌ».`
+  },
+  {
+    id: 29,
+    title: "الْحَدِيثُ التَّاسِعُ وَالعِشْرُونَ",
+    sahabi: "مُعَاذُ بْنُ جَبَلٍ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«أَخْبِرْنِي بِعَمَلٍ يُدْخِلُنِي الجَنَّةَ وَيُبَاعِدُنِي مِنَ النَّارِ...»",
+    takhrij: "رَوَاهُ التِّرْمِذِيُّ، وَقَالَ: حَدِيثٌ حَسَنٌ صَحِيحٌ.",
+    content: `عَنْ مُعَاذِ بْنِ جَبَلٍ رَضِيَ اللَّهُ عَنْهُ قَالَ: قُلْتُ يَا رَسُولَ اللَّهِ أَخْبِرْنِي بِعَمَلٍ يُدْخِلُنِي الجَنَّةَ وَيُبَاعِدُنِي مِنَ النَّارِ؟ قَالَ: «لَقَدْ سَأَلْتَ عَنْ عَظِيمٍ - وَإِنَّهُ لَيَسِيرٌ عَلَى مَنْ يَسَّرَهُ اللَّهُ عَلَيْهِ -، تَعْبُدُ اللَّهَ لَا تُشْرِكُ بِهِ شَيْئاً، وَتُقِيمُ الصَّلَاةَ، وَتُؤْتِي الزَّكَاةَ، وَتَصُومُ رَمَضَانَ، وَتَحُجُّ البَيْتَ. ثُمَّ قَالَ: أَلَا أَدُلُّكَ عَلَى أَبْوَابِ الخَيْرِ؟ الصَّوْمُ جُنَّةٌ، وَالصَّدَقَةُ تُطْفِئُ الخَطِيئَةَ كَمَا يُطْفِئُ المَاءُ النَّارَ، وَصَلَاةُ الرَّجُلِ فِي جَوْفِ اللَّيْلِ، ثُمَّ تَلَا <span class="quran-ayah">﴿تَتَجَافَىٰ جُنُوبُهُمْ عَنِ ٱلْمَضَاجِعِ﴾</span> حَتَّى بَلَغَ <span class="quran-ayah">﴿يَعْمَلُونَ﴾</span>. ثُمَّ قَالَ: «أَلَا أُخْبِرُكَ بِرَأْسِ الأَمْرِ، وَعَمُودِهِ، وَذِرْوَةِ سَنَامِهِ؟» قُلْتُ: بَلَى يَا رَسُولَ اللَّهِ، قَالَ: «رَأْسُ الأَمْرِ الإِسْلَامُ، وَعَمُودُهُ الصَّلَاةُ، وَذِرْوَةُ سَنَامِهِ الجِهَادُ»، ثُمَّ قَالَ: «أَلَا أُخْبِرُكَ بِمِلَاكِ ذَلِكَ كُلِّهِ؟»، قُلْتُ: بَلَى يَا رَسُولَ اللَّهِ، فَأَخَذَ بِلِسَانِهِ وَقَالَ: «كُفَّ عَلَيْكَ هَذَا»، فَقُلْتُ: يَا نَبِيَّ اللَّهِ، وَإِنَّا لَمُؤَاخَذُونَ بِمَا نَتَكَلَّمُ بِهِ؟ فَقَالَ: «ثَكِلَتْكَ أُمُّكَ، وَهَلْ يَكُبُّ النَّاسَ فِي النَّارِ عَلَى وُجُوهِهِمْ - أَوْ: عَلَى مَنَاخِرِهِمْ - إِلَّا حَصَائِدُ أَلْسِنَتِهِمْ».`
+  },
+  {
+    id: 30,
+    title: "الْحَدِيثُ الثَّلَاثُونَ",
+    sahabi: "أَبُو ثَعْلَبَةَ الخُشَنِيُّ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«إِنَّ اللَّهَ فَرَضَ فَرَائِضَ فَلَا تُضَيِّعُوهَا، وَحَدَّ حُدُوداً فَلَا تَعْتَدُوهَا...»",
+    takhrij: "حَدِيثٌ حَسَنٌ، رَوَاهُ الدَّارَقُطْنِيُّ، وَغَيْرُهُ.",
+    content: `عَنْ أَبِي ثَعْلَبَةَ الخُشَنِيِّ جُرْثُومِ بْنِ نَاشِرٍ رَضِيَ اللَّهُ عَنْهُ، عَنْ رَسُولِ اللَّهِ ﷺ قَالَ: «إِنَّ اللَّهَ فَرَضَ فَرَائِضَ فَلَا تُضَيِّعُوهَا، وَحَدَّ حُدُوداً فَلَا تَعْتَدُوهَا، وَحَرَّمَ أَشْيَاءَ فَلَا تَنْتَهِكُوهَا، وَسَكَتَ عَنْ أَشْيَاءَ - رَحْمَةً لَكُمْ غَيْرَ نِسْيَانٍ - فَلَا تَبْحَثُوا عَنْهَا».`
+  },
+  {
+    id: 31,
+    title: "الْحَدِيثُ الحَادِي وَالثَّلَاثُونَ",
+    sahabi: "سَهْلُ بْنُ سَعْدٍ السَّاعِدِيُّ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«ازْهَدْ فِي الدُّنْيَا يُحِبَّكَ اللَّهُ، وَازْهَدْ فِيمَا عِنْدَ النَّاسِ يُحِبَّكَ النَّاسُ»",
+    takhrij: "حَدِيثٌ حَسَنٌ، رَوَاهُ ابْنُ مَاجَهْ، وَغَيْرُهُ بِأَسَانِيدَ حَسَنَةٍ.",
+    content: `عَنْ أَبِي العَبَّاسِ سَهْلِ بْنِ سَعْدٍ السَّاعِدِيِّ رَضِيَ اللَّهُ عَنْهُ قَالَ: جَاءَ رَجُلٌ إِلَى النَّبِيِّ ﷺ فَقَالَ: يَا رَسُولَ اللَّهِ دُلَّنِي عَلَى عَمَلٍ إِذَا عَمِلْتُهُ أَحَبَّنِي اللَّهُ، وَأَحَبَّنِي النَّاسُ؟ فَقَالَ: «ازْهَدْ فِي الدُّنْيَا يُحِبَّكَ اللَّهُ، وَازْهَدْ فِيمَا عِنْدَ النَّاسِ يُحِبَّكَ النَّاسُ».`
+  },
+  {
+    id: 32,
+    title: "الْحَدِيثُ الثَّانِي وَالثَّلَاثُونَ",
+    sahabi: "أَبُو سَعِيدٍ الخُدْرِيُّ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«لَا ضَرَرَ وَلَا ضِرَارَ»",
+    takhrij: "حَدِيثٌ حَسَنٌ، رَوَاهُ ابْنُ مَاجَهْ وَالدَّارَقُطْنِيُّ وَغَيْرُهُمَا مُسْنَداً، وَرَوَاهُ مَالِكٌ فِي (المُوَطَّأِ) عَنْ عَمْرِو بْنِ يَحْيَى، عَنْ أَبِيهِ عَنِ النَّبِيِّ ﷺ مُرْسَلًا، فَأَسْقَطَ أَبَا سَعِيدٍ، وَلَهُ طُرُقٌ يُقَوِّي بَعْضُهَا بَعْضاً.",
+    content: `عَنْ أَبِي سَعِيدٍ سَعْدِ بْنِ مَالِكِ بْنِ سِنَانٍ الخُدْرِيِّ رَضِيَ اللَّهُ عَنْهُ أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: «لَا ضَرَرَ وَلَا ضِرَارَ».`
+  },
+  {
+    id: 33,
+    title: "الْحَدِيثُ الثَّالِثُ وَالثَّلَاثُونَ",
+    sahabi: "عَبْدُ اللَّهِ بْنُ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا",
+    hint: "«لَوْ يُعْطَى النَّاسُ بِدَعْوَاهُمْ، لَادَّعَى رِجَالٌ أَمْوَالَ قَوْمٍ وَدِمَاءَهُمْ...»",
+    takhrij: "حَدِيثٌ حَسَنٌ، رَوَاهُ البَيْهَقِيُّ وَغَيْرُهُ هَكَذَا، وَبَعْضُهُ فِي (الصَّحِيحَيْنِ).",
+    content: `عَنِ ابْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: «لَوْ يُعْطَى النَّاسُ بِدَعْوَاهُمْ، لَادَّعَى رِجَالٌ أَمْوَالَ قَوْمٍ وَدِمَاءَهُمْ، لَكِنِ البَيِّنَةُ عَلَى المُدَّعِي، وَاليَمِينُ عَلَى مَنْ أَنْكَرَ».`
+  },
+  {
+    id: 34,
+    title: "الْحَدِيثُ الرَّابِعُ وَالثَّلَاثُونَ",
+    sahabi: "أَبُو سَعِيدٍ الخُدْرِيُّ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«مَنْ رَأَى مِنْكُمْ مُنْكَراً فَلْيُغَيِّرْهُ بِيَدِهِ، فَإِنْ لَمْ يَسْتَطِعْ فَبِلِسَانِهِ...»",
+    takhrij: "رَوَاهُ مُسْلِمٌ.",
+    content: `عَنْ أَبِي سَعِيدٍ الخُدْرِيِّ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ ﷺ يَقُولُ: «مَنْ رَأَى مِنْكُمْ مُنْكَراً فَلْيُغَيِّرْهُ بِيَدِهِ، فَإِنْ لَمْ يَسْتَطِعْ فَبِلِسَانِهِ، فَإِنْ لَمْ يَسْتَطِعْ فَبِقَلْبِهِ، وَذَلِكَ أَضْعَفُ الإِيمَانِ».`
+  },
+  {
+    id: 35,
+    title: "الْحَدِيثُ الخَامِسُ وَالثَّلَاثُونَ",
+    sahabi: "أَبُو هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«لَا تَحَاسَدُوا، وَلَا تَنَاجَشُوا، وَلَا تَبَاغَضُوا، وَلَا تَدَابَرُوا...»",
+    takhrij: "رَوَاهُ مُسْلِمٌ.",
+    content: `عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «لَا تَحَاسَدُوا، وَلَا تَنَاجَشُوا، وَلَا تَبَاغَضُوا، وَلَا تَدَابَرُوا، وَلَا يَبِعْ بَعْضُكُمْ عَلَى بَيْعِ بَعْضٍ، وَكُونُوا عِبَادَ اللَّهِ إِخْوَاناً، المُسْلِمُ أَخُو المُسْلِمِ، لَا يَظْلِمُهُ، وَلَا يَخْذُلُهُ، وَلَا يَحْقِرُهُ، التَّقْوَى هَاهُنَا - وَيُشِيرُ إِلَى صَدْرِهِ ثَلَاثَ مَرَّاتٍ -. بِحَسْبِ امْرِئٍ مِنَ الشَّرِّ أَنْ يَحْقِرَ أَخَاهُ المُسْلِمَ، كُلُّ المُسْلِمِ عَلَى المُسْلِمِ حَرَامٌ: دَمُهُ، وَمَالُهُ، وَعِرْضُهُ».`
+  },
+  {
+    id: 36,
+    title: "الْحَدِيثُ السَّادِسُ وَالثَّلَاثُونَ",
+    sahabi: "أَبُو هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً مِنْ كُرَبِ الدُّنْيَا نَفَّسَ اللَّهُ عَنْهُ...»",
+    takhrij: "رَوَاهُ مُسْلِمٌ بِهَذَا اللَّفْظِ.",
+    content: `عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، عَنِ النَّبِيِّ ﷺ قَالَ: «مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً مِنْ كُرَبِ الدُّنْيَا نَفَّسَ اللَّهُ عَنْهُ كُرْبَةً مِنْ كُرَبِ يَوْمِ القِيَامَةِ. وَمَنْ يَسَّرَ عَلَى مُعْسِرٍ يَسَّرَ اللَّهُ عَلَيْهِ فِي الدُّنْيَا وَالآخِرَةِ. وَمَنْ سَتَرَ مُسْلِماً سَتَرَهُ اللَّهُ فِي الدُّنْيَا وَالآخِرَةِ. وَاللَّهُ فِي عَوْنِ العَبْدِ مَا كَانَ العَبْدُ فِي عَوْنِ أَخِيهِ. وَمَنْ سَلَكَ طَرِيقاً يَلْتَمِسُ فِيهِ عِلْماً سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقاً إِلَى الجَنَّةِ. وَمَا اجْتَمَعَ قَوْمٌ فِي بَيْتٍ مِنْ بُيُوتِ اللَّهِ، يَتْلُونَ كِتَابَ اللَّهِ، وَيَتَدَارَسُونَهُ بَيْنَهُمْ، إِلَّا نَزَلَتْ عَلَيْهِمُ السَّكِينَةُ، وَغَشِيَتْهُمُ الرَّحْمَةُ، وَحَفَّتْهُمُ المَلَائِكَةُ، وَذَكَرَهُمُ اللَّهُ فِيمَنْ عِنْدَهُ، وَمَنْ بَطَّأَ بِهِ عَمَلُهُ، لَمْ يُسْرِعْ بِهِ نَسَبُهُ».`
+  },
+  {
+    id: 37,
+    title: "الْحَدِيثُ السَّابِعُ وَالثَّلَاثُونَ",
+    sahabi: "عَبْدُ اللَّهِ بْنُ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا",
+    hint: "«إِنَّ اللَّهَ كَتَبَ الحَسَنَاتِ وَالسَّيِّئَاتِ، ثُمَّ بَيَّنَ ذَلِكَ...»",
+    takhrij: "رَوَاهُ البُخَارِيُّ، وَمُسْلِمٌ فِي صَحِيحَيْهِمَا بِهَذِهِ الحُرُوفِ.",
+    content: `عَنِ ابْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا عَنْ رَسُولِ اللَّهِ ﷺ فِيمَا يَرْوِي عَنْ رَبِّهِ تَبَارَكَ وَتَعَالَى قَالَ: «إِنَّ اللَّهَ كَتَبَ الحَسَنَاتِ وَالسَّيِّئَاتِ، ثُمَّ بَيَّنَ ذَلِكَ. فَمَنْ هَمَّ بِحَسَنَةٍ فَلَمْ يَعْمَلْهَا كَتَبَهَا اللَّهُ عِنْدَهُ حَسَنَةً كَامِلَةً. وَإِنْ هَمَّ بِهَا فَعَمِلَهَا كَتَبَهَا اللَّهُ عِنْدَهُ عَشْرَ حَسَنَاتٍ إِلَى سَبْعِمِائَةِ ضِعْفٍ إِلَى أَضْعَافٍ كَثِيرَةٍ. وَإِنْ هَمَّ بِسَيِّئَةٍ فَلَمْ يَعْمَلْهَا كَتَبَهَا اللَّهُ عِنْدَهُ حَسَنَةً كَامِلَةً. وَإِنْ هَمَّ بِهَا فَعَمِلَهَا كَتَبَهَا اللَّهُ سَيِّئَةً وَاحِدَةً».`
+  },
+  {
+    id: 38,
+    title: "الْحَدِيثُ الثَّامِنُ وَالثَّلَاثُونَ",
+    sahabi: "أَبُو هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«مَنْ عَادَى لِي وَلِيّاً، فَقَدْ آذَنْتُهُ بِالحَرْبِ...»",
+    takhrij: "رَوَاهُ البُخَارِيُّ.",
+    content: `عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «إِنَّ اللَّهَ تَعَالَى قَالَ: مَنْ عَادَى لِي وَلِيّاً، فَقَدْ آذَنْتُهُ بِالحَرْبِ، وَمَا تَقَرَّبَ إِلَيَّ عَبْدِي بِشَيْءٍ أَحَبَّ إِلَيَّ مِمَّا افْتَرَضْتُهُ عَلَيْهِ، وَمَا يَزَالُ عَبْدِي يَتَقَرَّبُ إِلَيَّ بِالنَّوَافِلِ حَتَّى أُحِبَّهُ، فَإِذَا أَحْبَبْتُهُ كُنْتُ سَمْعَهُ الَّذِي يَسْمَعُ بِهِ، وَبَصَرَهُ الَّذِي يُبْصِرُ بِهِ، وَيَدَهُ الَّتِي يَبْطِشُ بِهَا، وَرِجْلَهُ الَّتِي يَمْشِي بِهَا، وَلَئِنْ سَأَلَنِي لَأُعْطِيَنَّهُ، وَلَئِنِ اسْتَعَاذَنِي لَأُعِيذَنَّهُ».`
+  },
+  {
+    id: 39,
+    title: "الْحَدِيثُ التَّاسِعُ وَالثَّلَاثُونَ",
+    sahabi: "عَبْدُ اللَّهِ بْنُ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا",
+    hint: "«إِنَّ اللَّهَ تَجَاوَزَ لِي عَنْ أُمَّتِي الخَطَأَ، وَالنِّسْيَانَ، وَمَا اسْتُكْرِهُوا عَلَيْهِ»",
+    takhrij: "حَدِيثٌ حَسَنٌ، رَوَاهُ ابْنُ مَاجَهْ، وَالبَيْهَقِيُّ، وَغَيْرُهُمَا.",
+    content: `عَنِ ابْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: «إِنَّ اللَّهَ تَجَاوَزَ لِي عَنْ أُمَّتِي الخَطَأَ، وَالنِّسْيَانَ، وَمَا اسْتُكْرِهُوا عَلَيْهِ».`
+  },
+  {
+    id: 40,
+    title: "الْحَدِيثُ الأَرْبَعُونَ",
+    sahabi: "عَبْدُ اللَّهِ بْنُ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا",
+    hint: "«كُنْ فِي الدُّنْيَا كَأَنَّكَ غَرِيبٌ، أَوْ عَابِرُ سَبِيلٍ»",
+    takhrij: "رَوَاهُ البُخَارِيُّ.",
+    content: `عَنِ ابْنِ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: أَخَذَ رَسُولُ اللَّهِ ﷺ بِمَنْكِبَيَّ، فَقَالَ: «كُنْ فِي الدُّنْيَا كَأَنَّكَ غَرِيبٌ، أَوْ عَابِرُ سَبِيلٍ». <span class="text-red">وَكَانَ ابْنُ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا يَقُولُ: (إِذَا أَمْسَيْتَ، فَلَا تَنْتَظِرِ الصَّبَاحَ، وَإِذَا أَصْبَحْتَ فَلَا تَنْتَظِرِ المَسَاءَ، وَخُذْ مِنْ صِحَّتِكَ لِمَرَضِكَ، وَمِنْ حَيَاتِكَ لِمَوْتِكَ).</span>`
+  },
+  {
+    id: 41,
+    title: "الْحَدِيثُ الحَادِي وَالأَرْبَعُونَ",
+    sahabi: "عَبْدُ اللَّهِ بْنُ عَمْرٍو رَضِيَ اللَّهُ عَنْهُمَا",
+    hint: "«لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يَكُونَ هَوَاهُ تَبَعاً لِمَا جِئْتُ بِهِ»",
+    takhrij: "حَدِيثٌ حَسَنٌ صَحِيحٌ، رَوَيْنَاهُ فِي كِتَابِ (الحُجَّةِ) بِإِسْنَادٍ صَحِيحٍ.",
+    content: `عَنْ أَبِي مُحَمَّدٍ عَبْدِاللَّهِ بْنِ عَمْرِو بْنِ العَاصِ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يَكُونَ هَوَاهُ تَبَعاً لِمَا جِئْتُ بِهِ».`
+  },
+  {
+    id: 42,
+    title: "الْحَدِيثُ الثَّانِي وَالأَرْبَعُونَ",
+    sahabi: "أَنَسُ بْنُ مَالِكٍ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«يَا ابْنَ آدَمَ إِنَّكَ مَا دَعَوْتَنِي وَرَجَوْتَنِي غَفَرْتُ لَكَ عَلَى مَا كَانَ مِنْكَ...»",
+    takhrij: "رَوَاهُ التِّرْمِذِيُّ، وَقَالَ: حَدِيثٌ حَسَنٌ.",
+    content: `عَنْ أَنَسٍ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ ﷺ يَقُولُ: «قَالَ اللَّهُ تَعَالَى: يَا ابْنَ آدَمَ إِنَّكَ مَا دَعَوْتَنِي وَرَجَوْتَنِي غَفَرْتُ لَكَ عَلَى مَا كَانَ مِنْكَ وَلَا أُبَالِي. يَا ابْنَ آدَمَ لَوْ بَلَغَتْ ذُنُوبُكَ عَنَانَ السَّمَاءِ، ثُمَّ اسْتَغْفَرْتَنِي غَفَرْتُ لَكَ. يَا ابْنَ آدَمَ إِنَّكَ لَوْ أَتَيْتَنِي بِقُرَابِ الأَرْضِ خَطَايَا ثُمَّ لَقِيتَنِي لَا تُشْرِكُ بِي شَيْئاً لَأَتَيْتُكَ بِقُرَابِهَا مَغْفِرَةً».`
+  },
+  {
+    id: 43,
+    title: "الْحَدِيثُ الثَّالِثُ وَالأَرْبَعُونَ",
+    sahabi: "عَبْدُ اللَّهِ بْنُ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا",
+    hint: "«أَلْحِقُوا الفَرَائِضَ بِأَهْلِهَا، فَمَا أَبْقَتِ الفَرَائِضُ...»",
+    takhrij: "خَرَّجَهُ البُخَارِيُّ، وَمُسْلِمٌ.",
+    content: `عَنِ ابْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «أَلْحِقُوا الفَرَائِضَ بِأَهْلِهَا، فَمَا أَبْقَتِ الفَرَائِضُ، فَلِأَوْلَى رَجُلٍ ذَكَرٍ».`
+  },
+  {
+    id: 44,
+    title: "الْحَدِيثُ الرَّابِعُ وَالأَرْبَعُونَ",
+    sahabi: "أُمُّ المُؤْمِنِينَ عَائِشَةُ رَضِيَ اللَّهُ عَنْهَا",
+    hint: "«الرَّضَاعَةُ تُحَرِّمُ مَا تُحَرِّمُ الوِلَادَةُ»",
+    takhrij: "خَرَّجَهُ البُخَارِيُّ، وَمُسْلِمٌ.",
+    content: `عَنْ عَائِشَةَ رَضِيَ اللَّهُ عَنْهَا، عَنِ النَّبِيِّ ﷺ قَالَ: «الرَّضَاعَةُ تُحَرِّمُ مَا تُحَرِّمُ الوِلَادَةُ».`
+  },
+  {
+    id: 45,
+    title: "الْحَدِيثُ الخَامِسُ وَالأَرْبَعُونَ",
+    sahabi: "جَابِرُ بْنُ عَبْدِ اللَّهِ رَضِيَ اللَّهُ عَنْهُمَا",
+    hint: "«إِنَّ اللَّهَ وَرَسُولَهُ حَرَّمَ بَيْعَ الخَمْرِ، وَالمَيْتَةِ، وَالخِنْزِيرِ، وَالأَصْنَامِ...»",
+    takhrij: "خَرَّجَهُ البُخَارِيُّ، وَمُسْلِمٌ.",
+    content: `عَنْ جَابِرِ بْنِ عَبْدِاللَّهِ رَضِيَ اللَّهُ عَنْهُمَا أَنَّهُ سَمِعَ رَسُولَ اللَّهِ ﷺ عَامَ الفَتْحِ وَهُوَ بِمَكَّةَ يَقُولُ: «إِنَّ اللَّهَ وَرَسُولَهُ حَرَّمَ بَيْعَ الخَمْرِ، وَالمَيْتَةِ، وَالخِنْزِيرِ، وَالأَصْنَامِ». فَقِيلَ: يَا رَسُولَ اللَّهِ أَرَأَيْتَ شُحُومَ المَيْتَةِ، فَإِنَّهُ يُطْلَى بِهَا السُّفُنُ، وَيُدْهَنُ بِهَا الجُلُودُ، وَيَسْتَصْبِحُ بِهَا النَّاسُ؟ فَقَالَ: «لَا هُوَ حَرَامٌ»، ثُمَّ قَالَ رَسُولُ اللَّهِ ﷺ عِنْدَ ذَلِكَ: «قَاتَلَ اللَّهُ اليَهُودَ، إِنَّ اللَّهَ لَمَّا حَرَّمَ عَلَيْهِمُ الشُّحُومَ فَأَجْمَلُوهُ، ثُمَّ بَاعُوهُ، فَأَكَلُوا ثَمَنَهُ».`
+  },
+  {
+    id: 46,
+    title: "الْحَدِيثُ السَّادِسُ وَالأَرْبَعُونَ",
+    sahabi: "أَبُو مُوسَى الأَشْعَرِيُّ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«البِتْعُ وَالمِزْرُ... كُلُّ مُسْكِرٍ حَرَامٌ»",
+    takhrij: "خَرَّجَهُ البُخَارِيُّ.",
+    content: `عَنْ أَبِي بُرْدَةَ عَنْ أَبِيهِ أَبِي مُوسَى الأَشْعَرِيِّ رَضِيَ اللَّهُ عَنْهُ أَنَّ النَّبِيَّ ﷺ بَعَثَهُ إِلَى اليَمَنِ، فَسَأَلَهُ عَنْ أَشْرِبَةٍ تُصْنَعُ بِهَا، فَقَالَ: «وَمَا هِيَ؟»، قَالَ: البِتْعُ وَالمِزْرُ، <span class="text-red">- فَقِيلَ لِأَبِي بُرْدَةَ: وَمَا البِتْعُ؟ قَالَ: نَبِيذُ العَسَلِ، وَالمِزْرُ: نَبِيذُ الشَّعِيرِ -</span> فَقَالَ: «كُلُّ مُسْكِرٍ حَرَامٌ».`
+  },
+  {
+    id: 47,
+    title: "الْحَدِيثُ السَّابِعُ وَالأَرْبَعُونَ",
+    sahabi: "المِقْدَامُ بْنُ مَعْدِ يكَرِبَ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«مَا مَلَأَ آدَمِيٌّ وِعَاءً شَرّاً مِنْ بَطْنٍ، بِحَسْبِ ابْنِ آدَمَ أُكُلَاتٌ...»",
+    takhrij: "رَوَاهُ الإِمَامُ أَحْمَدُ، وَالتِّرْمِذِيُّ، وَالنَّسَائِيُّ، وَابْنُ مَاجَه، وَقَالَ التِّرْمِذِيُّ: حَدِيثٌ حَسَنٌ.",
+    content: `عَنِ المِقْدَامِ بْنِ مَعْدِ يكَرِبَ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ ﷺ يَقُولُ: «مَا مَلَأَ آدَمِيٌّ وِعَاءً شَرّاً مِنْ بَطْنٍ، بِحَسْبِ ابْنِ آدَمَ أُكُلَاتٌ يُقِمْنَ صُلْبَهُ، فَإِنْ كَانَ لَا مَحَالَةَ، فَثُلُثٌ لِطَعَامِهِ، وَثُلُثٌ لِشَرَابِهِ، وَثُلُثٌ لِنَفَسِهِ».`
+  },
+  {
+    id: 48,
+    title: "الْحَدِيثُ الثَّامِنُ وَالأَرْبَعُونَ",
+    sahabi: "عَبْدُ اللَّهِ بْنُ عَمْرٍو رَضِيَ اللَّهُ عَنْهُمَا",
+    hint: "«أَرْبَعٌ مَنْ كُنَّ فِيهِ كَانَ مُنَافِقاً، وَإِنْ كَانَتْ خَصْلَةٌ مِنْهُنَّ فِيهِ...»",
+    takhrij: "خَرَّجَهُ البُخَارِيُّ، وَمُسْلِمٌ.",
+    content: `عَنْ عَبْدِاللَّهِ بْنِ عَمْرٍو رَضِيَ اللَّهُ عَنْهُمَا عَنِ النَّبِيِّ ﷺ قَالَ: «أَرْبَعٌ مَنْ كُنَّ فِيهِ كَانَ مُنَافِقاً، وَإِنْ كَانَتْ خَصْلَةٌ مِنْهُنَّ فِيهِ كَانَتْ فِيهِ خَصْلَةٌ مِنَ النِّفَاقِ حَتَّى يَدَعَهَا: مَنْ إِذَا حَدَّثَ كَذَبَ، وَإِذَا وَعَدَ أَخْلَفَ، وَإِذَا خَاصَمَ فَجَرَ، وَإِذَا عَاهَدَ غَدَرَ».`
+  },
+  {
+    id: 49,
+    title: "الْحَدِيثُ التَّاسِعُ وَالأَرْبَعُونَ",
+    sahabi: "عُمَرُ بْنُ الخَطَّابِ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«لَوْ أَنَّكُمْ تَوَكَّلُونَ عَلَى اللَّهِ حَقَّ تَوَكُّلِهِ، لَرَزَقَكُمْ كَمَا يَرْزُقُ الطَّيْرَ...»",
+    takhrij: "رَوَاهُ الإِمَامُ أَحْمَدُ، وَالتِّرْمِذِيُّ، وَالنَّسَائِيُّ، وَابْنُ مَاجَهْ، وَابْنُ حِبَّانَ فِي صَحِيحِهِ، وَالحَاكِمُ، وَقَالَ التِّرْمِذِيُّ: حَسَنٌ صَحِيحٌ.",
+    content: `عَنْ عُمَرَ بْنِ الخَطَّابِ رَضِيَ اللَّهُ عَنْهُ، عَنِ النَّبِيِّ ﷺ قَالَ: «لَوْ أَنَّكُمْ تَوَكَّلُونَ عَلَى اللَّهِ حَقَّ تَوَكُّلِهِ، لَرَزَقَكُمْ كَمَا يَرْزُقُ الطَّيْرَ، تَغْدُو خِمَاصاً، وَتَرُوحُ بِطَاناً».`
+  },
+  {
+    id: 50,
+    title: "الْحَدِيثُ الخَمْسُونَ",
+    sahabi: "عَبْدُ اللَّهِ بْنُ بُسْرٍ رَضِيَ اللَّهُ عَنْهُ",
+    hint: "«لَا يَزَالُ لِسَانُكَ رَطْباً مِنْ ذِكْرِ اللَّهِ عَزَّ وَجَلَّ»",
+    takhrij: "خَرَّجَهُ الإِمَامُ أَحْمَدُ بِهَذَا اللَّفْظِ.",
+    content: `عَنْ عَبْدِاللَّهِ بْنِ بُسْرٍ رَضِيَ اللَّهُ عَنْهُ قَالَ: أَتَى النَّبِيَّ ﷺ رَجُلٌ، فَقَالَ: يَا رَسُولَ اللَّهِ إِنَّ شَرَائِعَ الإِسْلَامِ قَدْ كَثُرَتْ عَلَيْنَا فَبَابٌ نَتَمَسَّكُ بِهِ جَامِعٌ؟ قَالَ: «لَا يَزَالُ لِسَانُكَ رَطْباً مِنْ ذِكْرِ اللَّهِ عَزَّ وَجَلَّ».`
+  }
+];
+
+let activeHadith = null;
+let clozeTokens = [];
+let clozeRevealed = [];
+
+function initApp() {
+  renderMainCards();
+}
+
+function showScreen(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(screenId);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+/**
+ * Render all 50 hadith cards directly on the main screen
+ */
+function renderMainCards() {
+  const grid = document.getElementById('main-grid');
+  grid.innerHTML = '';
+
+  HADITHS.forEach(h => {
+    const card = document.createElement('div');
+    card.className = 'hadith-card';
+
+    card.innerHTML = `
+      <div>
+        <div class="hadith-card-title">${h.title}</div>
+        <div class="divider"></div>
+        <div class="card-action-bar">
+          <button class="hint-btn" onclick="toggleCardHint(event, ${h.id})">✦ تلميح</button>
+          <button class="cloze-btn" onclick="openClozeMode(event, ${h.id})">👁️ حجب تدريجي</button>
+          <button class="test-inline-btn" onclick="openWrittenExam(event, ${h.id})">✍️ تسميع كتابي</button>
+          <button class="read-btn" onclick="openReadModalClick(event, ${h.id})">📖 قراءة</button>
+        </div>
+        <div id="hint-display-${h.id}" class="hint-text-display">${h.hint}</div>
+      </div>
+    `;
+
+    // Click anywhere on the card outside of buttons or open hint -> opens Reading Mode
+    card.addEventListener('click', (e) => {
+      if (!e.target.closest('button') && !e.target.closest('.hint-text-display')) {
+        openReadModal(h.id);
+      }
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+function toggleCardHint(e, id) {
+  e.stopPropagation();
+  const el = document.getElementById(`hint-display-${id}`);
+  if (el) el.classList.toggle('shown');
+}
+
+function openReadModalClick(e, id) {
+  e.stopPropagation();
+  openReadModal(id);
+}
+
+/* ── Reading Modal ── */
+function openReadModal(id) {
+  const h = HADITHS.find(item => item.id === id);
+  if (!h) return;
+  document.getElementById('modal-title').textContent = h.title;
+  document.getElementById('modal-sahabi').textContent = `عَنْ: ${h.sahabi}`;
+  document.getElementById('modal-body-content').innerHTML = h.content;
+  document.getElementById('modal-takhrij').innerHTML = `<strong>تخريج الحديث:</strong> ${h.takhrij}`;
+  document.getElementById('read-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('read-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnOverlay(e) {
+  if (e.target.id === 'read-modal') closeModal();
+}
+
+/* ── Progressive Blur / Cloze Mode (With Sticky Controller & Smart Auto-Scroll) ── */
+function openClozeMode(e, id) {
+  if (e) e.stopPropagation();
+  activeHadith = HADITHS.find(h => h.id === id);
+  if (!activeHadith) return;
+
+  document.getElementById('cloze-hadith-title').textContent = activeHadith.title;
+
+  // Hadith text + Takhrij on a new line
+  const cleanContent = activeHadith.content.replace(/<[^>]+>/g, ' ').trim();
+  const hadithWords = cleanContent.split(/\s+/).filter(Boolean);
+  const takhrijWords = activeHadith.takhrij.split(/\s+/).filter(Boolean);
+
+  clozeTokens = [
+    ...hadithWords.map(w => ({ word: w, isTakhrij: false })),
+    ...takhrijWords.map(w => ({ word: w, isTakhrij: true }))
+  ];
+
+  clozeRevealed = new Array(clozeTokens.length).fill(false);
+
+  renderClozeWordsDOM();
+  showScreen('screen-cloze');
+}
+
+function renderClozeWordsDOM() {
+  const container = document.getElementById('cloze-words-wrapper');
+  container.innerHTML = '';
+  
+  let hasDrawnTakhrijSep = false;
+
+  clozeTokens.forEach((tokenObj, idx) => {
+    if (tokenObj.isTakhrij && !hasDrawnTakhrijSep) {
+      const sep = document.createElement('div');
+      sep.className = 'cloze-takhrij-sep';
+      container.appendChild(sep);
+      hasDrawnTakhrijSep = true;
+    }
+
+    const span = document.createElement('span');
+    span.id = `cloze-word-${idx}`;
+    span.className = `cloze-word ${clozeRevealed[idx] ? '' : 'blurred'}`;
+    span.textContent = tokenObj.word + ' ';
+    span.onclick = () => toggleWordBlur(idx);
+    container.appendChild(span);
+  });
+}
+
+function toggleWordBlur(idx) {
+  clozeRevealed[idx] = !clozeRevealed[idx];
+  const el = document.getElementById(`cloze-word-${idx}`);
+  if (el) {
+    if (clozeRevealed[idx]) {
+      el.classList.remove('blurred');
+    } else {
+      el.classList.add('blurred');
+    }
+  }
+}
+
+function revealNextWords(count) {
+  let revealedCount = 0;
+  let lastRevealedEl = null;
+
+  for (let i = 0; i < clozeRevealed.length; i++) {
+    if (!clozeRevealed[i]) {
+      clozeRevealed[i] = true;
+      const el = document.getElementById(`cloze-word-${i}`);
+      if (el) {
+        el.classList.remove('blurred');
+        lastRevealedEl = el;
+      }
+      revealedCount++;
+      if (revealedCount >= count) break;
+    }
+  }
+
+  // Smoothly scroll to keep the newly revealed words visible
+  if (lastRevealedEl) {
+    const rect = lastRevealedEl.getBoundingClientRect();
+    if (rect.bottom > window.innerHeight - 30 || rect.top < 100) {
+      lastRevealedEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+}
+
+function revealAllCloze() {
+  clozeRevealed.fill(true);
+  for (let i = 0; i < clozeRevealed.length; i++) {
+    const el = document.getElementById(`cloze-word-${i}`);
+    if (el) el.classList.remove('blurred');
+  }
+}
+
+function resetCloze() {
+  clozeRevealed.fill(false);
+  for (let i = 0; i < clozeRevealed.length; i++) {
+    const el = document.getElementById(`cloze-word-${i}`);
+    if (el) el.classList.add('blurred');
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Written Recitation Exam ── */
+function openWrittenExam(e, id) {
+  if (e) e.stopPropagation();
+  activeHadith = HADITHS.find(h => h.id === id);
+  if (!activeHadith) return;
+
+  document.getElementById('written-hadith-title').textContent = activeHadith.title;
+  document.getElementById('written-hint-box').textContent = activeHadith.hint;
+  document.getElementById('written-hint-box').style.display = 'none';
+  document.getElementById('written-input').value = '';
+  document.getElementById('written-results').style.display = 'none';
+
+  showScreen('screen-written');
+}
+
+function toggleWrittenHint() {
+  const box = document.getElementById('written-hint-box');
+  box.style.display = (box.style.display === 'none') ? 'block' : 'none';
+}
+
+function normalizeArabic(text) {
+  if (!text) return '';
+  return text
+    .replace(/[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]/g, '') // Remove Tashkeel
+    .replace(/[أإآٱ]/g, 'ا')
+    .replace(/ة/g, 'ه')
+    .replace(/ى/g, 'ي')
+    .replace(/ـ/g, '') // Remove Tatweel
+    .trim();
+}
+
+function tokenizeArabic(text) {
+  return text
+    .replace(/[،.؛:()«»"'؟!?\-–—﴿﴾\[\]*~•\/]/g, ' ')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+}
+
+function evaluateWrittenExam() {
+  const input = document.getElementById('written-input').value;
+  if (!input.trim()) {
+    alert('الرجاء كتابة نص الحديث أولاً قبل طلب التصحيح.');
+    return;
+  }
+
+  // Evaluated solely on Hadith content (excluding Takhrij)
+  const rawTarget = activeHadith.content.replace(/<[^>]+>/g, ' ');
+  const targetWords = tokenizeArabic(rawTarget);
+  const userWords = tokenizeArabic(input);
+
+  const normTarget = targetWords.map(normalizeArabic);
+  const normUser = userWords.map(normalizeArabic);
+
+  // Dynamic Programming Longest Common Subsequence
+  const M = normTarget.length;
+  const N = normUser.length;
+  const dp = Array(M + 1).fill(null).map(() => Array(N + 1).fill(0));
+
+  for (let i = 1; i <= M; i++) {
+    for (let j = 1; j <= N; j++) {
+      if (normTarget[i - 1] === normUser[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1] + 1;
+      } else {
+        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+      }
+    }
+  }
+
+  let i = M, j = N;
+  const diff = [];
+
+  while (i > 0 || j > 0) {
+    if (i > 0 && j > 0 && normTarget[i - 1] === normUser[j - 1]) {
+      diff.unshift({ type: 'equal', val: userWords[j - 1] });
+      i--;
+      j--;
+    } else if (j > 0 && (i === 0 || dp[i][j - 1] >= dp[i - 1][j])) {
+      diff.unshift({ type: 'added', val: userWords[j - 1] });
+      j--;
+    } else if (i > 0 && (j === 0 || dp[i][j - 1] < dp[i - 1][j])) {
+      diff.unshift({ type: 'removed', val: targetWords[i - 1] });
+      i--;
+    }
+  }
+
+  renderDiffResult(diff);
+}
+
+function renderDiffResult(diff) {
+  let html = '';
+  let missedBuffer = [];
+
+  const flushMissed = () => {
+    if (missedBuffer.length > 0) {
+      const words = missedBuffer.join(' ');
+      html += ` <span class="diff-removed" onclick="this.classList.toggle('expanded')" title="انقر لإظهار ما سقط منك">
+                  <span class="diff-removed-icon">❌</span>
+                  <span class="diff-removed-text">${words}</span>
+                </span> `;
+      missedBuffer = [];
+    }
+  };
+
+  diff.forEach(item => {
+    if (item.type === 'removed') {
+      missedBuffer.push(item.val);
+    } else {
+      flushMissed();
+      if (item.type === 'added') {
+        html += ` <span class="diff-added" title="زيادة ليست في الحديث">${item.val}</span> `;
+      } else {
+        html += ` ${item.val} `;
+      }
+    }
+  });
+  flushMissed();
+
+  const resContainer = document.getElementById('written-results');
+  
+  resContainer.innerHTML = `
+    <div style="font-size: 1.1rem; color: var(--emerald); font-weight: bold; margin-bottom: 0.8rem;">
+      نتيجة المقارنة وتصحيح التسميع:
+    </div>
+    <div style="line-height: 2.4;">${html}</div>
+    
+    <div class="correction-takhrij-box">
+      <strong>تخريج الحديث:</strong> ${activeHadith.takhrij}
+    </div>
+
+    <div style="font-size: 0.88rem; color: var(--ink-light); margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 0.6rem;">
+      * علامة (❌) تشير إلى موضع كلمة أو أكثر سقطت من حفظك، انقر عليها لإظهارها. الكلمات المشطوبة بالبنفسجي هي زيادات لم ترد في نص الحديث.
+    </div>
+  `;
+  resContainer.style.display = 'block';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// Run
+initApp();
+</script>
+</body>
+</html>
