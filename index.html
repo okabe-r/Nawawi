@@ -1024,17 +1024,27 @@ const HADITHS = [
 let activeHadith = null;
 let clozeTokens = [];
 let clozeRevealed = [];
+let savedMainScrollY = 0;
 
 function initApp() {
   renderMainCards();
 }
 
 function showScreen(screenId) {
+  const mainScreen = document.getElementById('screen-main');
+  if (mainScreen && mainScreen.classList.contains('active') && screenId !== 'screen-main') {
+    savedMainScrollY = window.scrollY;
+  }
+
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   const target = document.getElementById(screenId);
   if (target) {
     target.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (screenId === 'screen-main') {
+      window.scrollTo({ top: savedMainScrollY, behavior: 'instant' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 }
 
@@ -1247,6 +1257,40 @@ function tokenizeArabic(text) {
     .filter(Boolean);
 }
 
+/**
+ * Unifies "صلى الله عليه وسلم" (4 words) and "ﷺ" (1 symbol) into a single comparable token
+ * while preserving the user's exact typed text for display.
+ */
+function collapseSalawatTokens(words) {
+  const displayWords = [];
+  const normWords = [];
+  let i = 0;
+
+  while (i < words.length) {
+    if (
+      i + 3 < words.length &&
+      normalizeArabic(words[i]) === 'صلي' &&
+      normalizeArabic(words[i + 1]) === 'الله' &&
+      normalizeArabic(words[i + 2]) === 'عليه' &&
+      normalizeArabic(words[i + 3]) === 'وسلم'
+    ) {
+      displayWords.push(`${words[i]} ${words[i + 1]} ${words[i + 2]} ${words[i + 3]}`);
+      normWords.push('ﷺ');
+      i += 4;
+    } else if (words[i] === 'ﷺ') {
+      displayWords.push('ﷺ');
+      normWords.push('ﷺ');
+      i++;
+    } else {
+      displayWords.push(words[i]);
+      normWords.push(normalizeArabic(words[i]));
+      i++;
+    }
+  }
+
+  return { displayWords, normWords };
+}
+
 function evaluateWrittenExam() {
   const input = document.getElementById('written-input').value;
   if (!input.trim()) {
@@ -1256,11 +1300,16 @@ function evaluateWrittenExam() {
 
   // Evaluated solely on Hadith content (excluding Takhrij)
   const rawTarget = activeHadith.content.replace(/<[^>]+>/g, ' ');
-  const targetWords = tokenizeArabic(rawTarget);
-  const userWords = tokenizeArabic(input);
+  const rawTargetWords = tokenizeArabic(rawTarget);
+  const rawUserWords = tokenizeArabic(input);
 
-  const normTarget = targetWords.map(normalizeArabic);
-  const normUser = userWords.map(normalizeArabic);
+  const targetProcessed = collapseSalawatTokens(rawTargetWords);
+  const userProcessed = collapseSalawatTokens(rawUserWords);
+
+  const targetWords = targetProcessed.displayWords;
+  const userWords = userProcessed.displayWords;
+  const normTarget = targetProcessed.normWords;
+  const normUser = userProcessed.normWords;
 
   // Dynamic Programming Longest Common Subsequence
   const M = normTarget.length;
